@@ -1,12 +1,12 @@
 # プロダクト名 
 <!-- プロダクト名に変更してください -->
 
-![プロダクト名](https://kc3.me/cms/wp-content/uploads/2024/11/hack25-eyecatch.png)
+![KANSAI](https://kc3.me/cms/wp-content/uploads/2024/11/hack25-eyecatch.png)
 <!-- プロダクト名・イメージ画像を差し変えてください -->
 
 
 ## チーム名
-チーム○ XXXX
+チーム20 Parallel
 <!-- チームIDとチーム名を入力してください -->
 
 
