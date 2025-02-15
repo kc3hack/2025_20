@@ -6,10 +6,13 @@ public class ParticleManager : MonoBehaviour
 {
     [SerializeField] ParticleSystem clickedParticle;
 
+    [SerializeField] ParticleSystem bombParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        BombEffect(new Vector3(0f, 0f, 0f));
+        Debug.Log($"{Camera.main.ScreenToWorldPoint(new Vector3(100f, 100f, 100f))}");
     }
 
     // Update is called once per frame
@@ -19,14 +22,28 @@ public class ParticleManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log($"左クリックされた: {Input.mousePosition}");
-            // マウスのスクリーン座標をワールド座標に変換
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // 念の為、z座標は0にしておく
-            mousePosition.z = 0f;
-            // パーティクルの位置をマウスの位置に設定
-            clickedParticle.transform.position = mousePosition;
-            // パーティクルを再生
-            clickedParticle.Play();
+            // Input.mousePositionで得られるのは**スクリーン座標**
+            MouseClickEffect(Input.mousePosition);
         }
+    }
+
+    public void MouseClickEffect(Vector3 position)
+    {
+        // マウスのスクリーン座標をワールド座標に変換
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(position);
+        // 念の為、z座標は0にしておく
+        mousePosition.z = 0f;
+        // パーティクルの位置をマウスの位置に設定
+        clickedParticle.transform.position = mousePosition;
+        // パーティクルを再生
+        clickedParticle.Play();
+    }
+
+    public void BombEffect(Vector3 position)
+    {
+        // Vector3 bombPosition = Camera.main.ScreenToWorldPoint(position);
+        // bombPosition.z = 0f;
+        bombParticle.transform.position = position;
+        bombParticle.Play();
     }
 }
