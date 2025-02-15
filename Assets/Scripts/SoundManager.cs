@@ -63,7 +63,8 @@ public class SoundManager : MonoBehaviour
             Debug.Log("音が鳴らせなかった");
             return;
         }
-
+    
+        // 未使用のAudioSourceがあれば、音を鳴らす
         source.clip = soundEffectList[soundNumber];
         source.Play();
         Debug.Log($"効果音を鳴らします ({source.clip.name})");
