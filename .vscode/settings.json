@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "KNASAI.sln"
+    "dotnet.defaultSolution": "2025_20.sln"
 }
