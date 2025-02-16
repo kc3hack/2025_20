@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Objects
+    [SerializeField]Player player;
+    [SerializeField]ShopKeeper shopKeeper;
+    [SerializeField]Timer timer;
+
+
+    //UI
+    [SerializeField]GameObject resultPanel;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
