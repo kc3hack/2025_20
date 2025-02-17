@@ -27,6 +27,13 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// クリックエフェクトを出します。
+    /// 引数はスクリーン座標を渡してください。
+    /// マウスのスクリーン座標をワールド座標に変換してからパーティクルの位置に設定しています。
+    /// （マウスカーソルのスクリーン座標は`Input.mousePosition`で得られます）
+    /// </summary>
+    /// <param name="position"></param>
     public void MouseClickEffect(Vector3 position)
     {
         // マウスのスクリーン座標をワールド座標に変換
@@ -39,6 +46,11 @@ public class ParticleManager : MonoBehaviour
         clickedParticle.Play();
     }
 
+    /// <summary>
+    /// 爆発エフェクトを出します。
+    /// 引数はワールド座標を渡してください。
+    /// </summary>
+    /// <param name="position"></param>
     public void BombEffect(Vector3 position)
     {
         // Vector3 bombPosition = Camera.main.ScreenToWorldPoint(position);
@@ -46,4 +58,6 @@ public class ParticleManager : MonoBehaviour
         bombParticle.transform.position = position;
         bombParticle.Play();
     }
+
+    
 }
