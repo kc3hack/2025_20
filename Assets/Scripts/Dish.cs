@@ -13,7 +13,7 @@ public class Dish : MonoBehaviour
     [SerializeField]Kushikatsu[] normalKushikatsu;
     [SerializeField, Range(0, 100)]int normalWeight = 100;
 
-    [SerializeField]List<Kushikatsu> onDishKatsus;
+    [SerializeField]List<Kushikatsu> onDishKatsusList;
     [SerializeField]Vector3 offset = new Vector3(0.1f, 0, 0);
     int maxKushiLength = 5;
 
@@ -26,12 +26,21 @@ public class Dish : MonoBehaviour
 
     void Init()
     {
+        UpdateVisuals();
         for(int i = 0; i < maxKushiLength; i++)
         {
             Vector3 katsuPos = offset * ((-maxKushiLength / 2 ) + i);
             Kushikatsu kushikatsuObject = Instantiate(SpawnKatsu(), katsuPos, quaternion.identity);
             kushikatsuObject.transform.SetParent(transform, false);
-            onDishKatsus.Add(kushikatsuObject);
+            onDishKatsusList.Add(kushikatsuObject);
+        }
+    }
+
+    void UpdateVisuals()
+    {
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
@@ -44,7 +53,7 @@ public class Dish : MonoBehaviour
 
         //乱数生成
         int randomValue = UnityEngine.Random.Range(0, tortalProbability);
-        Debug.Log(randomValue);
+        //Debug.Log(randomValue);
 
         if(randomValue < normalProbability)
         {
@@ -65,13 +74,14 @@ public class Dish : MonoBehaviour
 
     public Kushikatsu GetKushikatsu()
     {
-        Kushikatsu taken;
-        if(onDishKatsus[0])
+        if(onDishKatsusList[0])
         {
-            taken = onDishKatsus[0];
-            onDishKatsus.RemoveAt(0);
+            Kushikatsu taken = onDishKatsusList[0];
+            //taken.transform.SetParent(null);
+            onDishKatsusList.RemoveAt(0);
+            //Debug.Log(onDishKatsusList);
 
-            if(onDishKatsus.Count <= 0)
+            if(onDishKatsusList.Count <= 0)
             {
                 Init();
             }

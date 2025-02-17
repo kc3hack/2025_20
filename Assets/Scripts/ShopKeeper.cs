@@ -12,11 +12,19 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField, Range(0f, 100f)]float turnThreshold = 0;
     [SerializeField, Range(2f, 5f)]float turningTime = 2f;
     [SerializeField]float turnGreed = 0;
-    [SerializeField]Animator animator;
+    [SerializeField]Animator shopKeeperAnim;
+    [SerializeField]Animator alertAnim;
 
     Coroutine lookAtPlayerCoroutine;
 
+    public ShopKeeperState CurrentState{
+        get{ return currentState; }
+        set{ currentState = value; }
+    }
     public int Alert{
+        get{
+            return alert;
+        }
         set{
             alert = value;
             if(alert > 5)
@@ -24,8 +32,8 @@ public class ShopKeeper : MonoBehaviour
                 alert = 5;
             }
             //アニメーション
-
-
+            //alertAnim.Play(0, 3, 0f);
+            Debug.Log($"current alert value: {alert}");
         }
     }
 
@@ -48,8 +56,6 @@ public class ShopKeeper : MonoBehaviour
                 //警戒度に応じて振り向いている時間を増やす
                 LookAtPlayer(turningTime + UnityEngine.Random.Range(0f, alert * 0.8f));
 
-                //振り向くアニメーション
-                currentState = ShopKeeperState.Turning;
                 //animator.SetBool();
 
                 turnGreed = 0;
@@ -59,7 +65,6 @@ public class ShopKeeper : MonoBehaviour
 
     public void LookAtPlayer(float lookingTime)
     {
-        Debug.Log("LookingAtPlayer");
         if(lookAtPlayerCoroutine != null)
         {
             StopCoroutine(lookAtPlayerCoroutine);
@@ -67,18 +72,18 @@ public class ShopKeeper : MonoBehaviour
 
         currentState = ShopKeeperState.LookingAtPlayer;
         //アニメーション
-        lookAtPlayerCoroutine = StartCoroutine(LookAtPlayerCotrutine(lookingTime));
+        lookAtPlayerCoroutine = StartCoroutine(LookAtPlayerCoroutine(lookingTime));
     }
-    IEnumerator LookAtPlayerCotrutine(float lookingTime)
+    IEnumerator LookAtPlayerCoroutine(float lookingTime)
     {
         Debug.Log("LookingAtPlayerCorutine");
         //Playerを見るアニメーション
-        //animator.SetBool()
+        
         yield return new WaitForSeconds(lookingTime);
 
         //Kitchenを見るアニメーション
         currentState = ShopKeeperState.LookingAtKitchen;
-        //animator.SetBool()
+        
 
         lookAtPlayerCoroutine = null;
     }

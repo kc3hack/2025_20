@@ -4,15 +4,16 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    Idoling,
+    Idling,
     Waiting,
     Hovering,
-    Dipping
+    Dipping,
+    GameOver
 }
 
 public enum ShopKeeperState
 {
-    Idoling,
+    Idling,
     LookingAtPlayer,
     Turning,
     LookingAtKitchen
@@ -20,8 +21,9 @@ public enum ShopKeeperState
 
 public enum GameState
 {
-    Idoling,
+    Idling,
     Playing,
     GameOver,
+    TimeOver,
     Result
 }
