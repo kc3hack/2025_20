@@ -41,9 +41,7 @@ public class IzakayaEventmanager : MonoBehaviour
         {
             drawCapacity = 0f;
             Debug.Log("抽選1");
-            float DEV = UnityEngine.Random.Range(0f, 1f);
-            Debug.Log(DEV);
-            if(DEV < baseProbability/100f)
+            if(UnityEngine.Random.Range(0f, 1f) < baseProbability/100f)
             {
                 Debug.Log("抽選2");
                 currentEvent = izakayaEventList[UnityEngine.Random.Range(0, izakayaEventList.Count)];
