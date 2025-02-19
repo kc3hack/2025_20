@@ -6,35 +6,23 @@ public class ParticleManager : MonoBehaviour
 {
     [SerializeField] ParticleSystem clickedParticle;
 
+    [SerializeField] ParticleSystem eatParticle;
+
+    [SerializeField] ParticleSystem dipSourceParticle;
+
     [SerializeField] ParticleSystem bombParticle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        BombEffect(new Vector3(0f, 0f, 0f));
-        Debug.Log($"{Camera.main.ScreenToWorldPoint(new Vector3(100f, 100f, 100f))}");
-    }
+    [SerializeField] List<ParticleSystem> happeningParticleList;
 
-    // Update is called once per frame
-    void Update()
-    {
-        // 左クリックされたらパーティクルを出す
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log($"左クリックされた: {Input.mousePosition}");
-            // Input.mousePositionで得られるのは**スクリーン座標**
-            MouseClickEffect(Input.mousePosition);
-        }
-    }
 
     /// <summary>
     /// クリックエフェクトを出します。
-    /// 引数はスクリーン座標を渡してください。
     /// マウスのスクリーン座標をワールド座標に変換してからパーティクルの位置に設定しています。
     /// （マウスカーソルのスクリーン座標は`Input.mousePosition`で得られます）
     /// </summary>
-    /// <param name="position"></param>
-    public void MouseClickEffect(Vector3 position)
+    /// <param name="position">エフェクトを出す座標。スクリーン座標</param>
+    /// <param name="scale">エフェクトのスケール。デフォルトで１</param>
+    public void MouseClickEffect(Vector3 position, float scale = 1f)
     {
         // マウスのスクリーン座標をワールド座標に変換
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(position);
@@ -42,6 +30,7 @@ public class ParticleManager : MonoBehaviour
         mousePosition.z = 0f;
         // パーティクルの位置をマウスの位置に設定
         clickedParticle.transform.position = mousePosition;
+        clickedParticle.transform.localScale = new Vector3(scale, scale, 1f);
         // パーティクルを再生
         clickedParticle.Play();
     }
@@ -50,14 +39,62 @@ public class ParticleManager : MonoBehaviour
     /// 爆発エフェクトを出します。
     /// 引数はワールド座標を渡してください。
     /// </summary>
-    /// <param name="position"></param>
-    public void BombEffect(Vector3 position)
+    /// <param name="position">エフェクトを出す座標。ワールド座標</param>
+    /// param name="scale">エフェクトのスケール。デフォルトで１</param>
+    public void BombEffect(Vector3 position, float scale = 1f)
     {
         // Vector3 bombPosition = Camera.main.ScreenToWorldPoint(position);
         // bombPosition.z = 0f;
         bombParticle.transform.position = position;
+        bombParticle.transform.localScale = new Vector3(scale, scale, 1f);
         bombParticle.Play();
     }
 
+    /// <summary>
+    /// 串を食べるときのエフェクトを出します。
+    /// </summary>
+
+    public void EatEffect(Vector3 position, float scale = 1f)
+    {
+        eatParticle.transform.position = position;
+        eatParticle.transform.localScale = new Vector3(scale, scale, 1f);
+        eatParticle.Play();
+    }
+
+    /// <summary>
+    /// 串をソースに付けたときのエフェクトを出します。
+    /// </summary>
+    /// <param name="position">エフェクトを出す座標。ワールド座標</param>
+    /// <param name="scale">エフェクトのスケール。デフォルトで１</param>
+    public void DipSourceEffect(Vector3 position, float scale = 1f)
+    {
+        dipSourceParticle.transform.position = position;
+        dipSourceParticle.transform.localScale = new Vector3(scale, scale, 1f);
+        dipSourceParticle.Play();
+    }
+
+
+    /// <summary>
+    /// ハプニング串に対してエフェクトを出します
+    /// 引数はワールド座標を渡してください。
+    /// </summary>
+    /// <param name="particleNumber">どのエフェクトを出すか</param>
+    /// <param name="position">エフェクトを出す座標。ワールド座標</param>
+    /// <param name="scale">エフェクトのスケール。デフォルトで１</param>
+    public void HappeningKushiEffectPlay(int particleNumber, Vector3 position, float scale = 1f)
+    {
+        happeningParticleList[particleNumber].transform.position = position;
+        happeningParticleList[particleNumber].transform.localScale = new Vector3(scale, scale, 1f);
+        happeningParticleList[particleNumber].Play();
+    }
+
+    /// <summary>
+    /// ハプニング串に対してエフェクトを止めます
+    /// </summary>
+    /// <param name="particleNumber">どのエフェクトを止めるか</param>
+    public void HappeningKushiEffectStop(int particleNumber)
+    {
+        happeningParticleList[particleNumber].Stop();
+    }
     
 }
