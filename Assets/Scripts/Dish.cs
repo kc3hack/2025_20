@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Dish : MonoBehaviour
 {
-    [SerializeField]IzakayaEvent izakayaEvent;
+    [SerializeField]IzakayaEventmanager izakayaEvent;
     [SerializeField]Kushikatsu[] SSRKushikatsus;
     [SerializeField, Range(0, 100)]int SSRWeight = 1;
     [SerializeField]Kushikatsu[] debuffKushikatsus;
@@ -34,6 +34,22 @@ public class Dish : MonoBehaviour
             kushikatsuObject.transform.SetParent(transform, false);
             onDishKatsusList.Add(kushikatsuObject);
         }
+    }
+
+    //>>>>>DEV
+    Vector3 previousOffset;
+    void Update()
+    {
+        if(previousOffset != offset)
+        {
+            int i = 0;
+            foreach(Kushikatsu kushi in onDishKatsusList)
+            {
+                kushi.transform.position = offset * ((-maxKushiLength / 2) + i);
+                i++;
+            }
+        }
+        previousOffset = offset;
     }
 
     void UpdateVisuals()
@@ -89,6 +105,7 @@ public class Dish : MonoBehaviour
         }
         else
         {
+            Debug.Log("KushikatsuList is null!");
             return null;
         }
     }

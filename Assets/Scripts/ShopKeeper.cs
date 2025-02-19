@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
+    [SerializeField]AlertSpriteControler alertSpriteControler;
     [SerializeField]ShopKeeperState currentState = ShopKeeperState.LookingAtKitchen;   //現在のステート
     [SerializeField]int alert = 0;      //警戒値
     [SerializeField, Range(0f, 100f)]float baseProbability = 10f;
     [SerializeField, Range(0f, 20f)]float amount = 10f;
-    [SerializeField, Range(0f, 100f)]float turnThreshold = 0;
+    [SerializeField, Range(0f, 100f)]float turnThreshold = 100;
     [SerializeField, Range(2f, 5f)]float turningTime = 2f;
     [SerializeField]float turnGreed = 0;
     [SerializeField]Animator shopKeeperAnim;
@@ -18,8 +19,12 @@ public class ShopKeeper : MonoBehaviour
     Coroutine lookAtPlayerCoroutine;
 
     public ShopKeeperState CurrentState{
-        get{ return currentState; }
-        set{ currentState = value; }
+        get{
+            return currentState;
+        }
+        set{
+            currentState = value;
+        }
     }
     public int Alert{
         get{
@@ -32,8 +37,7 @@ public class ShopKeeper : MonoBehaviour
                 alert = 5;
             }
             //アニメーション
-            //alertAnim.Play(0, 3, 0f);
-            Debug.Log($"current alert value: {alert}");
+            alertSpriteControler.ShowAlert(alert);
         }
     }
 
@@ -45,7 +49,7 @@ public class ShopKeeper : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateShopKeeper()
     {
         //振り向き抽選
         if(currentState == ShopKeeperState.LookingAtKitchen)
@@ -92,7 +96,7 @@ public class ShopKeeper : MonoBehaviour
     float deltaTG;
     void CheckForTurn()
     {
-        float probability = (baseProbability + alert * amount) / 200;
+        float probability = (baseProbability + alert * amount) / 100f;
         deltaTG = UnityEngine.Random.Range(0f, probability);
         //Debug.Log(deltaTG);
         turnGreed += deltaTG;

@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
     //Objects
     [SerializeField]Player player;
     [SerializeField]ShopKeeper shopKeeper;
+    [SerializeField]IzakayaEventmanager izakayaEvent;
     [SerializeField]Timer timer;
     [SerializeField]GameState currentGameState;
-
+    [SerializeField]GameObject middleFinger;
     //UI
     [SerializeField]GameObject resultPanel;
-
 
 
     // Start is called before the first frame update
@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     void GameUpdate()
     {
+        izakayaEvent.UpdateIzakayaEvent();
+        shopKeeper.UpdateShopKeeper();
         if(shopKeeper.CurrentState == ShopKeeperState.LookingAtPlayer)
         {
             if(player.CurrentState == PlayerState.Hovering && player.PreviousHovering == false) //警戒値上昇
@@ -48,7 +50,6 @@ public class GameManager : MonoBehaviour
                 //gameOverにする
                 GameOver();
 
-
                 return;
             }
         }
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        middleFinger.SetActive(true);
         player.CurrentState = PlayerState.Idling;
         shopKeeper.CurrentState = ShopKeeperState.Idling;
         currentGameState = GameState.GameOver;

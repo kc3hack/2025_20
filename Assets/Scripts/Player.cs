@@ -84,9 +84,9 @@ public class Player : MonoBehaviour
             //マウスクリック
             if(Input.GetMouseButtonDown(0))
             {
-                //たれの上をホバーしていたら
                 if(currentState == PlayerState.Hovering)
                 {
+                    //たれの上をホバーしていたら
                     Dipping();
                 }
             }
@@ -105,7 +105,6 @@ public class Player : MonoBehaviour
     void Dipping()
     {
         currentState = PlayerState.Dipping;
-
 
         //アニメーション
         //playerAnim.SetTrigger();
