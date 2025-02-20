@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSprite: {fileID: 21300000, guid: 9e6c8298f7816ba4c9c40ea5218f5c75, type: 3}
   topSprite: {fileID: 21300000, guid: 9e6c8298f7816ba4c9c40ea5218f5c75, type: 3}
+  comment: 
   kushiLength: 0
   baseKushiScore: 0
   offsetY: 1
@@ -147,5 +148,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

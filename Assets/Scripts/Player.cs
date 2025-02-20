@@ -93,6 +93,9 @@ public class Player : MonoBehaviour
                 {
                     //たれの上をホバーしていたら
                     Dipping();
+
+                    //>>>>>>>>>>>>DEV
+                    Eat();
                 }
             }
         }
@@ -104,7 +107,6 @@ public class Player : MonoBehaviour
         currentKushi = dish.GetKushikatsu();
 
         //一口食べるアニメーション
-
     }
 
     void Dipping()
@@ -115,14 +117,14 @@ public class Player : MonoBehaviour
         //playerAnim.SetTrigger();
     }
 
-    void SetKushiState()
+    public void SetKushiState()
     {
         //カツの見た目を変更
         currentKushi.IsDipped = true;
     }
 
 
-    void Eat()
+    public void Eat()
     {
         int kushiLengthCash = currentKushi.KushiLength;
         //操作を無効化
@@ -140,7 +142,7 @@ public class Player : MonoBehaviour
             Score += currentKushi.KushiScore * (1 + 0.1 * combo);
             TakeKushi();
         }
-        
+
         //操作可能に
         currentState = PlayerState.Waiting;
     }

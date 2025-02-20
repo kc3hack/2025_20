@@ -7,7 +7,7 @@ public abstract class IzakayaEvent : ScriptableObject
 {
     public int audioIndex;
     public string eventString = "";
-    public float lookAtPlayerTIme = 3f;
+    public float lookAtPlayerTime = 3f;
     public Action action;
 
     public abstract void Init();

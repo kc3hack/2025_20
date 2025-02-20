@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Dish : MonoBehaviour
 {
-    [SerializeField]IzakayaEventmanager izakayaEvent;
+    [SerializeField]IzakayaEventmanager izakayaEventmanager;
     [SerializeField]Kushikatsu[] SSRKushikatsus;
     [SerializeField, Range(0, 100)]int SSRWeight = 1;
     [SerializeField]Kushikatsu[] debuffKushikatsus;
@@ -29,8 +29,9 @@ public class Dish : MonoBehaviour
         UpdateVisuals();
         for(int i = 0; i < maxKushiLength; i++)
         {
-            Vector3 katsuPos = offset * ((-maxKushiLength / 2 ) + i);
-            Kushikatsu kushikatsuObject = Instantiate(SpawnKatsu(), katsuPos, quaternion.identity);
+            //Vector3 katsuPos = offset * ((-maxKushiLength / 2 ) + i);
+            //Kushikatsu kushikatsuObject = Instantiate(SpawnKatsu(), katsuPos, quaternion.identity);
+            Kushikatsu kushikatsuObject = SpawnKatsu();
             kushikatsuObject.transform.SetParent(transform, false);
             onDishKatsusList.Add(kushikatsuObject);
         }
@@ -59,7 +60,7 @@ public class Dish : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-
+    int d = 0;
     Kushikatsu SpawnKatsu()
     {
         int normalProbability = normalWeight * normalKushikatsu.Length;
@@ -70,22 +71,40 @@ public class Dish : MonoBehaviour
         //乱数生成
         int randomValue = UnityEngine.Random.Range(0, tortalProbability);
         //Debug.Log(randomValue);
+        Kushikatsu choseKushi;
 
+        // if(randomValue < normalProbability)
+        // {
+        //     return normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)];
+        // }
+        // else if(randomValue < normalProbability + debuffProbability)
+        // {
+        //     //デバフ串の場合は特殊効果を割り当てる
+        //     Kushikatsu chosenKushi = debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)];
+        //     chosenKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
+        //     return chosenKushi;
+        // }
+        // else
+        // {
+        //     return SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)];
+        // }
         if(randomValue < normalProbability)
         {
-            return normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)];
+            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
         }
         else if(randomValue < normalProbability + debuffProbability)
         {
             //デバフ串の場合は特殊効果を割り当てる
-            Kushikatsu chosenKushi = debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)];
-            chosenKushi.OnSpecialEffect += izakayaEvent.ForceTurnSK;
-            return chosenKushi;
+            choseKushi = Instantiate<Kushikatsu>(debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
+            choseKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
         }
         else
         {
-            return SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)];
+            choseKushi = Instantiate<Kushikatsu>(SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
         }
+        d++;
+
+        return choseKushi;
     }
 
     public Kushikatsu GetKushikatsu()

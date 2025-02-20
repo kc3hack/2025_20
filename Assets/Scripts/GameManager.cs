@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.Playing;
     }
 
+    void StartGame()
+    {
+        timer.StartTimer();
+    }
+
     void GameOver()
     {
         middleFinger.SetActive(true);
@@ -84,6 +89,8 @@ public class GameManager : MonoBehaviour
 
     void ShowResult()
     {
+        Time.timeScale = 0;
+        timer.StopTimer();
         currentGameState = GameState.Result;
         resultPanel.SetActive(true);
     }

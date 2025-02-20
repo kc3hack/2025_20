@@ -9,19 +9,14 @@ public class SoundManager : MonoBehaviour
 {
     // サウンドエフェクトの最大数
     const int MAX_SOUND_EFFECT_NUM = 20;
-
     // 複数個のオーディオソースを管理する
     AudioSource[] soundEffectSourcesList = new AudioSource[MAX_SOUND_EFFECT_NUM];
-
     // BGS用のAudioSourceを管理
     [SerializeField] AudioSource backGroundSource;
-
     // 使用するサウンドエフェクトのリスト
     [SerializeField] List<AudioClip> soundEffectList;
-
     // 使用するBGSのリスト
     [SerializeField] List<AudioClip> backGroundSoundList;
-
     // Startより先に実行される
     // 初期化処理を記述
     void Awake()

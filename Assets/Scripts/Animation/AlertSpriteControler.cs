@@ -21,7 +21,7 @@ public class AlertSpriteControler : MonoBehaviour
 
     public void ShowAlert(int v)
     {
-        if(alertSpriteObj.activeSelf)
+        if(alertSpriteObj.activeSelf == false)
         {
             ShowAlertSprite();
         }
@@ -36,7 +36,7 @@ public class AlertSpriteControler : MonoBehaviour
 
     void ShowAlertValue(int v)
     {
-        if(alertValueObj.activeSelf)
+        if(alertValueObj.activeSelf == false)
         {
             alertValueObj.SetActive(true);
         }
