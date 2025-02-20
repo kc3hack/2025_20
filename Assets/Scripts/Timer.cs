@@ -39,5 +39,9 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         isRunning = false;
+        if(timeLeft < 0f)
+        {
+            timeLeft = 0f;
+        }
     }
 }

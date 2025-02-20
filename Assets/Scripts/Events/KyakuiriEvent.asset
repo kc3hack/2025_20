@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8de698627032445b2057d7409906ea, type: 3}
-  m_Name: Event 1
+  m_Script: {fileID: 11500000, guid: 6979c2ed70544b948abeb66b1210fb0c, type: 3}
+  m_Name: KyakuiriEvent
   m_EditorClassIdentifier: 
   audioIndex: 0
   eventString: "\u30AC\u30E9\u30C3"
-  lookAtPlayerTIme: 3
+  lookAtPlayerTime: 3.0008316

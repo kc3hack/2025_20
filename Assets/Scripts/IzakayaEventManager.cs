@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class IzakayaEventmanager : MonoBehaviour
@@ -9,20 +10,25 @@ public class IzakayaEventmanager : MonoBehaviour
     [SerializeField]SoundManager soundManager;
     [SerializeField]GameObject hukidashiObj;
     [SerializeField]GameObject hukidashiTextObj;
+    [SerializeField]GameObject hukidashiKushiObj;
+    [SerializeField]GameObject hukidashikushiTextObj;
     [SerializeField]List<IzakayaEvent> izakayaEventList; 
     [SerializeField]IzakayaEvent currentEvent;
     [SerializeField]int drawProbability = 10;
     [SerializeField]int baseProbability = 50;
     [SerializeField, Range(1000, 10000)]int drawFrame = 1000;
     Coroutine hukidashiCoroutine = null;
+    Coroutine hukidashiKushiCorutine = null;
     TMP_Text hukidashiText;
+    TMP_Text hukidashiKushiText;
     [SerializeField]float drawCapacity;
 
     void Start()
     {
         drawCapacity = 0f;
         hukidashiText = hukidashiTextObj.GetComponent<TMP_Text>();
-        Debug.Log(hukidashiText);
+        hukidashiKushiText = hukidashikushiTextObj.GetComponent<TMP_Text>();
+        //Debug.Log(hukidashiText);
     }
 
     public void UpdateIzakayaEvent()
@@ -64,6 +70,7 @@ public class IzakayaEventmanager : MonoBehaviour
     void ShowHukidashi()
     {
         hukidashiText.text = currentEvent.eventString.ToString();
+        Debug.Log(hukidashiText.text);
         //吹き出しを表示
         hukidashiObj.SetActive(true);
         hukidashiTextObj.SetActive(true);
@@ -73,7 +80,7 @@ public class IzakayaEventmanager : MonoBehaviour
             StopCoroutine(hukidashiCoroutine);
         }
         hukidashiCoroutine = StartCoroutine(ShowHukidashiCorutine());
-        ForceTurnSK(2f);
+        ForceTurnSK(currentEvent.lookAtPlayerTime);
     }
     IEnumerator ShowHukidashiCorutine()
     {
@@ -85,14 +92,30 @@ public class IzakayaEventmanager : MonoBehaviour
         hukidashiTextObj.SetActive(false);
     }
 
-    void ForceTurnSK(float turningTime)
+    IEnumerator ShowHukidashiKushiCorutine()
+    {
+        yield return new WaitForSeconds(2f);
+
+        hukidashiKushiObj.SetActive(false);
+        hukidashikushiTextObj.SetActive(false);
+    }
+
+    public void ForceTurnSK(float turningTime)
     {
         shopKeeper.LookAtPlayer(turningTime);
     }
 
-    public void ForceTurnSK()
+    public void KushiEvent(string text)
     {
-        //2秒間強制的に振り向かせる
-        shopKeeper.LookAtPlayer(3f);
+        hukidashiKushiText.text = text;
+        hukidashiKushiObj.SetActive(true);
+        hukidashikushiTextObj.SetActive(true);
+        if(hukidashiKushiCorutine != null)
+        {
+            StopCoroutine(hukidashiCoroutine);
+        }
+        hukidashiKushiCorutine = StartCoroutine(ShowHukidashiKushiCorutine());
+
+        ForceTurnSK(3f);
     }
 }
