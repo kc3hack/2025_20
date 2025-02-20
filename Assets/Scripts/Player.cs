@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField]Animator playerAnim;
     
     int combo = 0;
+    int maxCombo = 0;
     [SerializeField]
     bool previousHovering = false;
 
@@ -19,23 +20,27 @@ public class Player : MonoBehaviour
     Vector3 mousePosWorldPoint;
 
     public double Score{
-        get{
-            return score;
-        }
+        get{ return score; }
         set{
             score = value;
             //UI変更イベント処理
         }
     }
-
     public int Combo{
         get{
             return combo;
         }
         set{
             combo = value;
+            if(combo > maxCombo)
+            {
+                maxCombo = combo;
+            }
             Debug.Log($"current combo value: {combo}");
         }
+    }
+    public int MaxCombo{
+        get{ return maxCombo; }
     }
 
     public PlayerState CurrentState{
@@ -84,9 +89,9 @@ public class Player : MonoBehaviour
             //マウスクリック
             if(Input.GetMouseButtonDown(0))
             {
-                //たれの上をホバーしていたら
                 if(currentState == PlayerState.Hovering)
                 {
+                    //たれの上をホバーしていたら
                     Dipping();
                 }
             }
@@ -105,7 +110,6 @@ public class Player : MonoBehaviour
     void Dipping()
     {
         currentState = PlayerState.Dipping;
-
 
         //アニメーション
         //playerAnim.SetTrigger();

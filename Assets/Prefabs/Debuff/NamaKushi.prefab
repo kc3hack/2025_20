@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdad666ed64599747a7c8a40aafc62b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSprite: {fileID: 0}
-  topSprite: {fileID: 0}
+  baseSprite: {fileID: 21300000, guid: 9e6c8298f7816ba4c9c40ea5218f5c75, type: 3}
+  topSprite: {fileID: 21300000, guid: 9e6c8298f7816ba4c9c40ea5218f5c75, type: 3}
   kushiLength: 0
   baseKushiScore: 0
   offsetY: 1
