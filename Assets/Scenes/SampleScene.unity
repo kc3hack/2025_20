@@ -529,10 +529,7 @@ GameObject:
   - component: {fileID: 146477384}
   - component: {fileID: 146477383}
   - component: {fileID: 146477386}
-<<<<<<< HEAD
-=======
   - component: {fileID: 146477387}
->>>>>>> Animation
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -575,11 +572,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 546176252}
-<<<<<<< HEAD
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-=======
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Animation
 --- !u!212 &146477386
 SpriteRenderer:
   m_ObjectHideFlags: 0
