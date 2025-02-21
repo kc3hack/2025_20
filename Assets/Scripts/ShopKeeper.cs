@@ -50,18 +50,21 @@ public class ShopKeeper : MonoBehaviour
     // Update is called once per frame
     public void UpdateShopKeeper()
     {
-        //振り向き抽選
-        if(currentState == ShopKeeperState.LookingAtKitchen)
+        if(gameObject.activeInHierarchy)
         {
-            CheckForTurn();
-            if(turnGreed >= turnThreshold)
+            //振り向き抽選
+            if(currentState == ShopKeeperState.LookingAtKitchen)
             {
-                //警戒度に応じて振り向いている時間を増やす
-                LookAtPlayer(turningTime + UnityEngine.Random.Range(0f, alert * 0.8f));
+                CheckForTurn();
+                if(turnGreed >= turnThreshold)
+                {
+                    //警戒度に応じて振り向いている時間を増やす
+                    LookAtPlayer(turningTime + UnityEngine.Random.Range(0f, alert * 0.8f));
 
-                //animator.SetBool();
+                    //animator.SetBool();
 
-                turnGreed = 0;
+                    turnGreed = 0;
+                }
             }
         }
     }

@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("TimeOver!");
     }
 
+    
     void ShowResult()
     {
         Time.timeScale = 0;

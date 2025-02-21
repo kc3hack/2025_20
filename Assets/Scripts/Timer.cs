@@ -32,12 +32,14 @@ public class Timer : MonoBehaviour
     //タイマー開始
     public void StartTimer()
     {
+        Time.timeScale = 1f;
         isRunning = true;
     }
 
     //タイマー停止
     public void StopTimer()
     {
+        Time.timeScale = 0f;
         isRunning = false;
         if(timeLeft < 0f)
         {

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField]PlayerState currentState = PlayerState.Idling;
     [SerializeField]double score = 0;
     [SerializeField]Animator playerAnim;
+    [SerializeField]GameScore gameScore;
+    [SerializeField]GameCombo gameCombo;
+    [SerializeField]Vector3 mouseOffset;
     
     int combo = 0;
     int maxCombo = 0;
@@ -24,6 +27,8 @@ public class Player : MonoBehaviour
         set{
             score = value;
             //UI変更イベント処理
+            gameScore.Score = (int)score;
+            Debug.Log(score);
         }
     }
     public int Combo{
@@ -36,7 +41,8 @@ public class Player : MonoBehaviour
             {
                 maxCombo = combo;
             }
-            Debug.Log($"current combo value: {combo}");
+            gameCombo.Combo = combo;
+            Debug.Log(combo);
         }
     }
     public int MaxCombo{
@@ -80,7 +86,7 @@ public class Player : MonoBehaviour
         if(currentState == PlayerState.Waiting || currentState == PlayerState.Hovering)
         {
             //カツをマウスの位置に
-            mousePos = Input.mousePosition;
+            mousePos = Input.mousePosition + mouseOffset;
             mousePos.z = -Camera.main.transform.position.z;
             mousePosWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
             mousePosWorldPoint.z = 0f;
@@ -95,7 +101,7 @@ public class Player : MonoBehaviour
                     Dipping();
 
                     //>>>>>>>>>>>>DEV
-                    Eat();
+                    //Eat();
                 }
             }
         }
@@ -109,12 +115,12 @@ public class Player : MonoBehaviour
         //一口食べるアニメーション
     }
 
-    void Dipping()
+    public void Dipping()
     {
         currentState = PlayerState.Dipping;
 
-        //アニメーション
-        //playerAnim.SetTrigger();
+        //>>>>>DEV
+        currentKushi.IsDipped = true;
     }
 
     public void SetKushiState()
@@ -130,18 +136,18 @@ public class Player : MonoBehaviour
         //操作を無効化
         currentState = PlayerState.Idling;
 
-        //アニメーション
-        //playerAnim.SetTrigger();
-
-        //串を食べる処理
-        currentKushi.EatKushikatsu();
-
         //前の串が無くなったら
-        if(kushiLengthCash <= 0)
+        //if(kushiLengthCash <= 1)
+        if(currentKushi.KushiLength <= 1)
         {
+            Combo++;
+            Debug.Log(currentKushi.KushiScore * (1 + 0.1 * combo));
             Score += currentKushi.KushiScore * (1 + 0.1 * combo);
             TakeKushi();
         }
+
+        //串を食べる処理
+        currentKushi.EatKushikatsu();
 
         //操作可能に
         currentState = PlayerState.Waiting;

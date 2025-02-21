@@ -33,9 +33,12 @@ public class IzakayaEventmanager : MonoBehaviour
 
     public void UpdateIzakayaEvent()
     {
-        if(shopKeeper.CurrentState == ShopKeeperState.LookingAtKitchen)
+        if(gameObject.activeInHierarchy)
         {
-            DrawingEvent();
+            if(shopKeeper.CurrentState == ShopKeeperState.LookingAtKitchen)
+            {
+                DrawingEvent();
+            }
         }
     }
 
@@ -78,6 +81,7 @@ public class IzakayaEventmanager : MonoBehaviour
         if(hukidashiCoroutine != null)
         {
             StopCoroutine(hukidashiCoroutine);
+            hukidashiCoroutine = null;
         }
         hukidashiCoroutine = StartCoroutine(ShowHukidashiCorutine());
         ForceTurnSK(currentEvent.lookAtPlayerTime);
@@ -86,6 +90,8 @@ public class IzakayaEventmanager : MonoBehaviour
     {
         //2秒待つ
         yield return new WaitForSeconds(2f);
+        
+        hukidashiCoroutine = null;
 
         //吹き出しを閉じる
         hukidashiObj.SetActive(false);
@@ -95,6 +101,8 @@ public class IzakayaEventmanager : MonoBehaviour
     IEnumerator ShowHukidashiKushiCorutine()
     {
         yield return new WaitForSeconds(2f);
+        
+        hukidashiKushiCorutine = null;
 
         hukidashiKushiObj.SetActive(false);
         hukidashikushiTextObj.SetActive(false);
@@ -112,8 +120,10 @@ public class IzakayaEventmanager : MonoBehaviour
         hukidashikushiTextObj.SetActive(true);
         if(hukidashiKushiCorutine != null)
         {
-            StopCoroutine(hukidashiCoroutine);
+            StopCoroutine(hukidashiKushiCorutine);
+            hukidashiKushiCorutine = null;
         }
+
         hukidashiKushiCorutine = StartCoroutine(ShowHukidashiKushiCorutine());
 
         ForceTurnSK(3f);

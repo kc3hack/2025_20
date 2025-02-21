@@ -11,8 +11,9 @@ public class Kushikatsu : MonoBehaviour
     [SerializeField]Sprite topSprite;   //ソース付きスプライト
     [SerializeField]string comment = "";
     [SerializeField]int kushiLength;    //串の長さ
-    [SerializeField]int baseKushiScore = 0;
-    [SerializeField]float offsetY = 20f; //スプライト間のY軸オフセット
+    [SerializeField]int baseKushiScore = 10;
+    [SerializeField]float offsetY; //スプライト間のY軸オフセット
+    [SerializeField]Vector3 offsetPos;
     [SerializeField]bool isDipped = false;  //ソースがついているかどうか
     GameObject[] _kushiPieces;
     const int maxKushiLength = 7; //串の最大長
@@ -49,13 +50,15 @@ public class Kushikatsu : MonoBehaviour
         }
 
         //得点を計算
-        for(int i = 0; i < kushiLength; i++)
+        for(int i = 1; i < kushiLength+1; i++)
         {
             kushiScore += baseKushiScore * i;
         }
+        Debug.Log(kushiScore);
 
         CreateSprite();
     }
+
 
     //playerクラスに公開
     public void EatKushikatsu()
@@ -92,10 +95,11 @@ public class Kushikatsu : MonoBehaviour
         {
             GameObject piece = new GameObject("KushiPiece_" + i);
             piece.transform.SetParent(transform);
-            piece.transform.localPosition = new Vector3(0, i * offsetY, 0f);
+            piece.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            piece.transform.localPosition = new Vector3(offsetPos.x, offsetPos.y + i * offsetY, 0f);
             SpriteRenderer renderer = piece.AddComponent<SpriteRenderer>();
             renderer.sprite = baseSprite;
-            renderer.sortingOrder = 2;
+            renderer.sortingOrder = 3;
             _kushiPieces[i] = piece;
         }
     }
