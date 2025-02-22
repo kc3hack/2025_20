@@ -557,6 +557,7 @@ MonoBehaviour:
   gameScore: {fileID: 1570995425}
   gameCombo: {fileID: 123787134}
   mouseOffset: {x: 93, y: 28, z: 0}
+  animController: {fileID: 0}
   previousHovering: 0
 --- !u!4 &146477384
 Transform:

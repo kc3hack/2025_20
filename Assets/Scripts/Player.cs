@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField]GameScore gameScore;
     [SerializeField]GameCombo gameCombo;
     [SerializeField]Vector3 mouseOffset;
+    [SerializeField]PlayerAnimController animController;
     
     int combo = 0;
     int maxCombo = 0;
@@ -53,10 +54,9 @@ public class Player : MonoBehaviour
         get{ return currentState; }
         set{
             currentState = value;
+            animController.PlayPlayerAnim(currentState);
             if(currentState == PlayerState.GameOver)
             {
-                //アニメーション
-                //playerAnim.SetTrigger();
                 Debug.Log($"current state: {currentState}");
             }
             previousHovering = false;

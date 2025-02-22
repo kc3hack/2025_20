@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
-    [SerializeField] Animator playerAnimator;
+    [SerializeField]Animator playerAnimator;
 
 
     public void PlayPlayerAnim(PlayerState currentState)
@@ -15,10 +15,12 @@ public class PlayerAnimController : MonoBehaviour
             case PlayerState.Waiting:
             case PlayerState.Hovering:
             case PlayerState.Dipping:
-                playerAnimator.SetBool("IsPlayerBomd", false);
+                playerAnimator.SetBool("IsPlayerBombed", false);
+                Debug.Log("アニメーション：プレイヤーは爆発していない");
                 break;
             case PlayerState.GameOver:
-                playerAnimator.SetBool("IsPlayerBomd", true);
+                playerAnimator.SetBool("IsPlayerBombed", true);
+                Debug.Log("アニメーション：プレイヤーは爆発した");
                 break;
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopKeeperAnimController : MonoBehaviour
 {
-    [SerializeField] Animator shopKeeperAnim;
+    [SerializeField]Animator shopKeeperAnim;
 
 
     public void PlayShopKeeperAnim(ShopKeeperState currentState)
@@ -14,10 +14,12 @@ public class ShopKeeperAnimController : MonoBehaviour
             case ShopKeeperState.Idling:
             case ShopKeeperState.LookingAtKitchen:
                 shopKeeperAnim.SetBool("IsLookingAtPlayer", false);
+                Debug.Log("アニメーション：キッチンを見ます");
                 break;
             case ShopKeeperState.Turning:
             case ShopKeeperState.LookingAtPlayer:
                 shopKeeperAnim.SetBool("IsLookingAtPlayer", true);
+                Debug.Log("アニメーション：プレイヤーを見ます");
                 break;
         }
     }
