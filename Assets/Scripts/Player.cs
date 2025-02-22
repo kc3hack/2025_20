@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]Dish dish;
+    [SerializeField]Hand hand;
     [SerializeField]Kushikatsu currentKushi;
     [SerializeField]PlayerState currentState = PlayerState.Idling;
     [SerializeField]double score = 0;
@@ -85,12 +86,15 @@ public class Player : MonoBehaviour
         }
         if(currentState == PlayerState.Waiting || currentState == PlayerState.Hovering)
         {
-            //カツをマウスの位置に
+            // //カツをマウスの位置に
             mousePos = Input.mousePosition + mouseOffset;
             mousePos.z = -Camera.main.transform.position.z;
             mousePosWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
             mousePosWorldPoint.z = 0f;
-            currentKushi.transform.position = mousePosWorldPoint;
+            // currentKushi.transform.position = mousePosWorldPoint;
+
+            //handをマウスの位置にワープ
+            hand.transform.position = mousePosWorldPoint;
 
             //マウスクリック
             if(Input.GetMouseButtonDown(0))

@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         timer.StopTimer();
         //Time.timeScale = 0;
 
-        Debug.Log("GameOver!");
+        ShowResult();
     }
 
     void TimeOver()
