@@ -133,8 +133,6 @@ public class Player : MonoBehaviour
     public void Eat()
     {
         int kushiLengthCash = currentKushi.KushiLength;
-        //操作を無効化
-        currentState = PlayerState.Idling;
 
         //前の串が無くなったら
         //if(kushiLengthCash <= 1)
@@ -149,7 +147,5 @@ public class Player : MonoBehaviour
         //串を食べる処理
         currentKushi.EatKushikatsu();
 
-        //操作可能に
-        currentState = PlayerState.Waiting;
     }
 }
