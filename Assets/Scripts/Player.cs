@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         get{ return currentState; }
         set{
             currentState = value;
+            Debug.Log($"currentStateのSettarを実行: {currentState}");
             animController.PlayPlayerAnim(currentState);
             if(currentState == PlayerState.GameOver)
             {
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
         //currentState = PlayerState.Idling;
 
         //>>>>>>>>>>>DEV
-        currentState = PlayerState.Waiting;
+        CurrentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
@@ -117,7 +118,7 @@ public class Player : MonoBehaviour
 
     public void Dipping()
     {
-        currentState = PlayerState.Dipping;
+        CurrentState = PlayerState.Dipping;
 
         //>>>>>DEV
         currentKushi.IsDipped = true;
@@ -146,6 +147,5 @@ public class Player : MonoBehaviour
 
         //串を食べる処理
         currentKushi.EatKushikatsu();
-
     }
 }

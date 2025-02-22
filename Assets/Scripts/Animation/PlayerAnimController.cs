@@ -6,6 +6,8 @@ public class PlayerAnimController : MonoBehaviour
 {
     [SerializeField]Animator playerAnimator;
 
+    [SerializeField]Animator kushiAnimator;
+
 
     public void PlayPlayerAnim(PlayerState currentState)
     {
@@ -18,12 +20,8 @@ public class PlayerAnimController : MonoBehaviour
                 Debug.Log("アニメーション：プレイヤーは爆発していない");
                 break;
             case PlayerState.Dipping:
-                // カツをディップするアニメーション
-                // （終了時にアニメーションイベントでcurrentStateをIdlingに変更する）
-                // Debug.Log("アニメーション：カツをディップします");
-                // カツを食べるアニメーション（開始時にアニメーションイベントでEat関数を呼び出す）
-                // （終了時にアニメーションイベントでcurrentStateをWaitingに変更する）
-                // Debug.Log("アニメーション：カツを食べます");
+                Debug.Log("アニメーション：カツをディップして食べます。");
+                playerAnimator.SetTrigger("IsPlayerDipping");
                 break;
             case PlayerState.GameOver:
                 playerAnimator.SetBool("IsPlayerBombed", true);
