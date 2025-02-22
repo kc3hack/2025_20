@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
+    [SerializeField]bool stopShopkeeper = false;
     [SerializeField]AlertSpriteControler alertSpriteControler;
     [SerializeField]ShopKeeperState currentState = ShopKeeperState.LookingAtKitchen;   //現在のステート
     [SerializeField]int alert = 0;      //警戒値
@@ -14,6 +15,7 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField]float turnGreed = 0;
     [SerializeField]Animator shopKeeperAnim;
     [SerializeField]Animator alertAnim;
+    [SerializeField]ShopKeeperAnimController animController;
 
     Coroutine lookAtPlayerCoroutine;
 
@@ -23,6 +25,7 @@ public class ShopKeeper : MonoBehaviour
         }
         set{
             currentState = value;
+            animController.PlayShopKeeperAnim(currentState);
         }
     }
     public int Alert{
@@ -44,13 +47,19 @@ public class ShopKeeper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //currentState = ShopKeeperState.Idoling;
+        currentState = ShopKeeperState.Idling;
     }
 
     // Update is called once per frame
     public void UpdateShopKeeper()
     {
-        if(gameObject.activeInHierarchy)
+        //>>>DEV
+        if(stopShopkeeper)
+        {
+            currentState = ShopKeeperState.LookingAtKitchen;
+            return;
+        }
+        if(currentState != ShopKeeperState.Idling)
         {
             //振り向き抽選
             if(currentState == ShopKeeperState.LookingAtKitchen)
@@ -76,7 +85,7 @@ public class ShopKeeper : MonoBehaviour
             StopCoroutine(lookAtPlayerCoroutine);
         }
 
-        currentState = ShopKeeperState.LookingAtPlayer;
+        CurrentState = ShopKeeperState.LookingAtPlayer;
         //アニメーション
         lookAtPlayerCoroutine = StartCoroutine(LookAtPlayerCoroutine(lookingTime));
     }
@@ -88,7 +97,7 @@ public class ShopKeeper : MonoBehaviour
         yield return new WaitForSeconds(lookingTime);
 
         //Kitchenを見るアニメーション
-        currentState = ShopKeeperState.LookingAtKitchen;
+        CurrentState = ShopKeeperState.LookingAtKitchen;
         
 
         lookAtPlayerCoroutine = null;

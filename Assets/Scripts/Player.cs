@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]GameScore gameScore;
     [SerializeField]GameCombo gameCombo;
     [SerializeField]Vector3 mouseOffset;
+    [SerializeField]PlayerAnimController animController;
     
     int combo = 0;
     int maxCombo = 0;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
             score = value;
             //UI変更イベント処理
             gameScore.Score = (int)score;
-            Debug.Log(score);
+            //Debug.Log(score);
         }
     }
     public int Combo{
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
                 maxCombo = combo;
             }
             gameCombo.Combo = combo;
-            Debug.Log(combo);
+            //Debug.Log(combo);
         }
     }
     public int MaxCombo{
@@ -54,10 +55,10 @@ public class Player : MonoBehaviour
         get{ return currentState; }
         set{
             currentState = value;
+            Debug.Log($"currentStateのSettarを実行: {currentState}");
+            animController.PlayPlayerAnim(currentState);
             if(currentState == PlayerState.GameOver)
             {
-                //アニメーション
-                //playerAnim.SetTrigger();
                 Debug.Log($"current state: {currentState}");
             }
             previousHovering = false;
@@ -73,8 +74,8 @@ public class Player : MonoBehaviour
     {
         currentState = PlayerState.Idling;
 
-        //>>>>>>>>>>>DEV
-        //currentState = PlayerState.Waiting;
+        // //>>>>>>>>>>>DEV
+        // CurrentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
     {
         if(currentKushi == null)
         {
-            currentKushi = dish.GetKushikatsu();
+            TakeKushi();
         }
         if(currentState == PlayerState.Waiting || currentState == PlayerState.Hovering)
         {
@@ -121,9 +122,7 @@ public class Player : MonoBehaviour
 
     public void Dipping()
     {
-        currentState = PlayerState.Dipping;
-
-        //>>>>>DEV
+        CurrentState = PlayerState.Dipping;
         currentKushi.IsDipped = true;
     }
 
@@ -136,24 +135,17 @@ public class Player : MonoBehaviour
 
     public void Eat()
     {
-        int kushiLengthCash = currentKushi.KushiLength;
-        //操作を無効化
-        currentState = PlayerState.Idling;
+        currentKushi.EatKushikatsu();
+        Debug.Log(currentKushi.KushiLength);
 
         //前の串が無くなったら
-        //if(kushiLengthCash <= 1)
-        if(currentKushi.KushiLength <= 1)
+        if(currentKushi.KushiLength <= 0)
         {
             Combo++;
-            Debug.Log(currentKushi.KushiScore * (1 + 0.1 * combo));
             Score += currentKushi.KushiScore * (1 + 0.1 * combo);
+            currentKushi.DestroyKushi();
+            currentKushi = null;
             TakeKushi();
         }
-
-        //串を食べる処理
-        currentKushi.EatKushikatsu();
-
-        //操作可能に
-        currentState = PlayerState.Waiting;
     }
 }

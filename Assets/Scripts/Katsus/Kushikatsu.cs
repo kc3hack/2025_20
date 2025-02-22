@@ -24,6 +24,12 @@ public class Kushikatsu : MonoBehaviour
         }
         protected set{
             kushiLength = value;
+            // if(kushiLength <= 0)
+            // {
+            //     Debug.Log("Destroy!");
+            //     ApplySpecialEffect();
+            //     Destroy(gameObject);
+            // }
         }
     }
     public int KushiScore{
@@ -42,19 +48,21 @@ public class Kushikatsu : MonoBehaviour
     void Awake()
     {
         //ランダムに串の長さを指定
-        kushiLength = UnityEngine.Random.Range(1, maxKushiLength+1);
+        KushiLength = UnityEngine.Random.Range(1, maxKushiLength+1);
         //長さ6は除外
         if(kushiLength == 5 || kushiLength == 6)
         {
-            kushiLength = 4;
+            KushiLength = 4;
         }
+        //>>>DEV
+        kushiLength = 2;
 
         //得点を計算
         for(int i = 1; i < kushiLength+1; i++)
         {
             kushiScore += baseKushiScore * i;
         }
-        Debug.Log(kushiScore);
+        //Debug.Log(kushiScore);
 
         CreateSprite();
     }
@@ -63,28 +71,16 @@ public class Kushikatsu : MonoBehaviour
     //playerクラスに公開
     public void EatKushikatsu()
     {
-        Debug.Log("EatKushikatsu!");
         //食べるときに先端をDestroy
         if(kushiLength > 0)
         {
             Destroy(_kushiPieces[kushiLength - 1]);
             _kushiPieces[kushiLength - 1] = null;
-            Debug.Log("sentan Destroy");
+            UpdateSprite();
         }
 
-        kushiLength--;
-        isDipped = false;
-
-        //カツがなくなったら、破壊
-        if(kushiLength <= 0)
-        {
-            ApplySpecialEffect();
-            Destroy(gameObject);
-            return;
-        }
-
-        //スプライトをアップデート
-        UpdateSprite();
+        KushiLength--;
+        IsDipped = false;
     }
 
     void CreateSprite()
@@ -124,16 +120,22 @@ public class Kushikatsu : MonoBehaviour
         }
     }
 
+    public void DestroyKushi()
+    {
+        ApplySpecialEffect();
+        Destroy(gameObject);
+    }
+
     public void ApplySpecialEffect()
     {
-        Debug.Log(OnSpecialEffect);
+        //Debug.Log(OnSpecialEffect);
         if(OnSpecialEffect == null)
         {
-            Debug.Log("普通の串！");
+            //Debug.Log("普通の串！");
         }
         else
         {
-            Debug.Log("OnSpecialEffect");
+            //Debug.Log("OnSpecialEffect");
             OnSpecialEffect?.Invoke(comment);
             //OnSpecialEffect();
         }

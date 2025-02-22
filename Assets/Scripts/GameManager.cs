@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,24 +17,25 @@ public class GameManager : MonoBehaviour
     //UI
     [SerializeField]GameObject resultPanel;
 
+    bool alreadyStart = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //>>>>>>>>>DEV
-        //currentGameState = GameState.Playing;
         Time.timeScale = 0f;
         currentGameState = GameState.Idling;
-        //countDown.StartCountDown(3, "START!", 1f);
-        countDown.StartCountDown(10, "START!", 1f);
+        countDown.StartCountDown(3, "START!", 1f);
     }
+
+
     void FixedUpdate()
     {
-        if(currentGameState == GameState.Idling)
+        Debug.Log("aaaa");
+        if(alreadyStart == false)
         {
             StartGame();
         }
-
         if(currentGameState == GameState.Playing)
         {
             GameUpdate();
@@ -72,8 +74,10 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        alreadyStart = true;
         currentGameState = GameState.Playing;
         player.CurrentState = PlayerState.Waiting;
+        shopKeeper.CurrentState = ShopKeeperState.LookingAtKitchen;
         timer.StartTimer();
     }
 

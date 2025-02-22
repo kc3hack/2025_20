@@ -15,7 +15,7 @@ public class GameScore : MonoBehaviour
         set{
             score = value;
             scoreText.text = score.ToString("D5");
-            Debug.Log(scoreText.text);
+            //Debug.Log(scoreText.text);
         }
     }
 
