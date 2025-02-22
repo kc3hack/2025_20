@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]ShopKeeper shopKeeper;
     [SerializeField]IzakayaEventmanager izakayaEvent;
     [SerializeField]Timer timer;
+    [SerializeField]CountDown countDown;
     [SerializeField]GameState currentGameState;
     [SerializeField]GameObject middleFinger;
     //UI
@@ -20,10 +21,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //>>>>>>>>>DEV
-        currentGameState = GameState.Playing;
+        //currentGameState = GameState.Playing;
+        Time.timeScale = 0f;
+        currentGameState = GameState.Idling;
+        //countDown.StartCountDown(3, "START!", 1f);
+        countDown.StartCountDown(10, "START!", 1f);
     }
     void FixedUpdate()
     {
+        if(currentGameState == GameState.Idling)
+        {
+            StartGame();
+        }
+
         if(currentGameState == GameState.Playing)
         {
             GameUpdate();
@@ -62,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        currentGameState = GameState.Playing;
+        player.CurrentState = PlayerState.Waiting;
         timer.StartTimer();
     }
 

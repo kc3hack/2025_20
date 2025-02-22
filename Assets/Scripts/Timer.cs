@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField]CountDown countDown;
     public float timeLeft = 0;
     [SerializeField, Range(1f, 1000f)]float timeLimit = 90f;
     [SerializeField]bool isRunning = false;
@@ -20,6 +21,14 @@ public class Timer : MonoBehaviour
         if(isRunning)
         {
             timeLeft -= Time.deltaTime;
+
+            if(timeLeft < 10)
+            {
+                if(countDown.IsRunning == false)
+                {
+                    countDown.StartCountDown(10, "終了!", 0f);
+                }
+            }
         }
     }
     

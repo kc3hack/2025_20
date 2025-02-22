@@ -71,10 +71,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        //currentState = PlayerState.Idling;
+        currentState = PlayerState.Idling;
 
         //>>>>>>>>>>>DEV
-        currentState = PlayerState.Waiting;
+        //currentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
