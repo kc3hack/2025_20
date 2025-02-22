@@ -6,22 +6,17 @@ using TMPro;
 public class GameResult : MonoBehaviour
 {
     [SerializeField]Player player;
-    [SerializeField]GameObject scoreResultObj;
-    [SerializeField]GameObject comboResultObj;
     [SerializeField]GameObject exitGameButton;
-
-    TMP_Text scoreText;
-    TMP_Text comboText;
-
-    void Start()
-    {
-        scoreText = scoreResultObj.GetComponent<TMP_Text>();
-        comboText = comboResultObj.GetComponent<TMP_Text>();
-    }
+    [SerializeField]TMP_Text scoreText;
+    [SerializeField]TMP_Text comboText;
+    [SerializeField]Animator scoreTextAnim;
+    [SerializeField]Animator comboTextAnim;
+    [SerializeField]float animationDelay = 1f;
 
     void OnEnable()
     {
-        Debug.Log("GameResult OnEnable!");
+        //Debug.Log("GameResult OnEnable!");
+        
         ShowResult();
     }
 
@@ -30,14 +25,28 @@ public class GameResult : MonoBehaviour
         scoreText.text = ((int)player.Score).ToString("D5");
         comboText.text = player.MaxCombo.ToString("D2");
 
+        //Scoreの表示
+        scoreText.gameObject.SetActive(true);
+        scoreTextAnim.Play(0, 0, 0f);
+        StartCoroutine(DelayShowingText());
+
         StartCoroutine(EnableButtonCoroutine());
-        Debug.Log("ShowResult!");
     }
+    
+    //順番に表示させる
+    IEnumerator DelayShowingText()
+    {
+        yield return new WaitForSecondsRealtime(animationDelay);
+
+        comboText.gameObject.SetActive(true);
+        comboTextAnim.Play(0, 0, 0f);
+    }
+
 
     //2秒待ってからStartに戻れるようにする
     IEnumerator EnableButtonCoroutine()
     {
-        Debug.Log("EnableButtonCoroutine");
+        //Debug.Log("EnableButtonCoroutine");
         yield return new WaitForSecondsRealtime(2f);
 
         exitGameButton.SetActive(true);

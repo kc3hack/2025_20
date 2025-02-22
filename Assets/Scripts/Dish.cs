@@ -6,6 +6,7 @@ using UnityEngine;
 public class Dish : MonoBehaviour
 {
     [SerializeField]IzakayaEventmanager izakayaEventmanager;
+    [SerializeField]Hand hand;
     [SerializeField]Kushikatsu[] SSRKushikatsus;
     [SerializeField, Range(0, 100)]int SSRWeight = 1;
     [SerializeField]Kushikatsu[] debuffKushikatsus;
@@ -73,21 +74,6 @@ public class Dish : MonoBehaviour
         //Debug.Log(randomValue);
         Kushikatsu choseKushi;
 
-        // if(randomValue < normalProbability)
-        // {
-        //     return normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)];
-        // }
-        // else if(randomValue < normalProbability + debuffProbability)
-        // {
-        //     //デバフ串の場合は特殊効果を割り当てる
-        //     Kushikatsu chosenKushi = debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)];
-        //     chosenKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
-        //     return chosenKushi;
-        // }
-        // else
-        // {
-        //     return SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)];
-        // }
         if(randomValue < normalProbability)
         {
             choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
@@ -112,7 +98,8 @@ public class Dish : MonoBehaviour
         if(onDishKatsusList[0])
         {
             Kushikatsu taken = onDishKatsusList[0];
-            //taken.transform.SetParent(null);
+            taken.transform.SetParent(hand.transform);
+            taken.transform.localPosition = new Vector3(0f, 0f, 0f);
             onDishKatsusList.RemoveAt(0);
             //Debug.Log(onDishKatsusList);
 
