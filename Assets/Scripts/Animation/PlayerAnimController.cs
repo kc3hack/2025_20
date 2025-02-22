@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
-    [SerializeField] Animator playerAnimator;
+    [SerializeField]Animator playerAnimator;
+
+    [SerializeField]Animator kushiAnimator;
 
 
     public void PlayPlayerAnim(PlayerState currentState)
@@ -14,11 +16,16 @@ public class PlayerAnimController : MonoBehaviour
             case PlayerState.Idling:
             case PlayerState.Waiting:
             case PlayerState.Hovering:
+                playerAnimator.SetBool("IsPlayerBombed", false);
+                Debug.Log("アニメーション：プレイヤーは爆発していない");
+                break;
             case PlayerState.Dipping:
-                playerAnimator.SetBool("IsPlayerBomd", false);
+                Debug.Log("アニメーション：カツをディップして食べます。");
+                playerAnimator.SetTrigger("IsPlayerDipping");
                 break;
             case PlayerState.GameOver:
-                playerAnimator.SetBool("IsPlayerBomd", true);
+                playerAnimator.SetBool("IsPlayerBombed", true);
+                Debug.Log("アニメーション：プレイヤーは爆発した");
                 break;
         }
     }

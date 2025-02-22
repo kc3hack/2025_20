@@ -14,6 +14,7 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField]float turnGreed = 0;
     [SerializeField]Animator shopKeeperAnim;
     [SerializeField]Animator alertAnim;
+    [SerializeField]ShopKeeperAnimController animController;
 
     Coroutine lookAtPlayerCoroutine;
 
@@ -23,6 +24,7 @@ public class ShopKeeper : MonoBehaviour
         }
         set{
             currentState = value;
+            animController.PlayShopKeeperAnim(currentState);
         }
     }
     public int Alert{

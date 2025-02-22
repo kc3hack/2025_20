@@ -644,8 +644,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146477384}
-  - component: {fileID: 146477383}
   - component: {fileID: 146477386}
+  - component: {fileID: 146477383}
   - component: {fileID: 146477387}
   m_Layer: 0
   m_Name: Player
@@ -674,7 +674,8 @@ MonoBehaviour:
   playerAnim: {fileID: 0}
   gameScore: {fileID: 1570995425}
   gameCombo: {fileID: 123787134}
-  mouseOffset: {x: 0, y: 0, z: 0}
+  mouseOffset: {x: 93, y: 28, z: 0}
+  animController: {fileID: 278836044}
   previousHovering: 0
 --- !u!4 &146477384
 Transform:
@@ -935,6 +936,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 146477383}
   exitGameButton: {fileID: 311764271}
+--- !u!1 &218428308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218428309}
+  - component: {fileID: 218428310}
+  m_Layer: 0
+  m_Name: ShopKeeperAnimController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218428309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218428308}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0924168, y: -0.31658491, z: -0.015153761}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 662593801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &218428310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218428308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ebf70303e7ef04c84556257b044285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopKeeperAnim: {fileID: 610276981}
   scoreText: {fileID: 701362359}
   comboText: {fileID: 321917927}
   scoreTextAnim: {fileID: 701362361}
@@ -1312,6 +1358,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265652211}
   m_CullTransparentMesh: 1
+--- !u!1 &278836043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 278836045}
+  - component: {fileID: 278836044}
+  m_Layer: 0
+  m_Name: PlayerAnimController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &278836044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278836043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae66e3cc14d7124abde7b25b3ae8db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 146477387}
+  kushiAnimator: {fileID: 0}
+--- !u!4 &278836045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278836043}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0924168, y: -0.31658491, z: -0.015153761}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 662593801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311764271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,6 +2486,7 @@ MonoBehaviour:
   turnGreed: 0
   shopKeeperAnim: {fileID: 0}
   alertAnim: {fileID: 0}
+  animController: {fileID: 218428310}
 --- !u!212 &610276980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2839,28 +2932,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662593801}
-  - component: {fileID: 662593800}
   m_Layer: 0
-  m_Name: AnimationManager
+  m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &662593800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662593799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da47cc6838191a4e8efd69b8b7b49b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopKeeperAnim: {fileID: 610276981}
-  playerAnim: {fileID: 146477387}
 --- !u!4 &662593801
 Transform:
   m_ObjectHideFlags: 0
@@ -2873,7 +2951,9 @@ Transform:
   m_LocalPosition: {x: -0.40845525, y: 0.5879941, z: 0.02388886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 278836045}
+  - {fileID: 218428309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664072864

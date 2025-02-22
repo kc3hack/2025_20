@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]GameScore gameScore;
     [SerializeField]GameCombo gameCombo;
     [SerializeField]Vector3 mouseOffset;
+    [SerializeField]PlayerAnimController animController;
     
     int combo = 0;
     int maxCombo = 0;
@@ -54,10 +55,10 @@ public class Player : MonoBehaviour
         get{ return currentState; }
         set{
             currentState = value;
+            Debug.Log($"currentStateのSettarを実行: {currentState}");
+            animController.PlayPlayerAnim(currentState);
             if(currentState == PlayerState.GameOver)
             {
-                //アニメーション
-                //playerAnim.SetTrigger();
                 Debug.Log($"current state: {currentState}");
             }
             previousHovering = false;
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
         currentState = PlayerState.Idling;
 
         //>>>>>>>>>>>DEV
-        //currentState = PlayerState.Waiting;
+        CurrentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
@@ -121,7 +122,7 @@ public class Player : MonoBehaviour
 
     public void Dipping()
     {
-        currentState = PlayerState.Dipping;
+        CurrentState = PlayerState.Dipping;
 
         //>>>>>DEV
         currentKushi.IsDipped = true;
@@ -137,8 +138,6 @@ public class Player : MonoBehaviour
     public void Eat()
     {
         int kushiLengthCash = currentKushi.KushiLength;
-        //操作を無効化
-        currentState = PlayerState.Idling;
 
         //前の串が無くなったら
         //if(kushiLengthCash <= 1)
@@ -152,8 +151,5 @@ public class Player : MonoBehaviour
 
         //串を食べる処理
         currentKushi.EatKushikatsu();
-
-        //操作可能に
-        currentState = PlayerState.Waiting;
     }
 }
