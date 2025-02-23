@@ -24,12 +24,6 @@ public class Kushikatsu : MonoBehaviour
         }
         protected set{
             kushiLength = value;
-            // if(kushiLength <= 0)
-            // {
-            //     Debug.Log("Destroy!");
-            //     ApplySpecialEffect();
-            //     Destroy(gameObject);
-            // }
         }
     }
     public int KushiScore{
