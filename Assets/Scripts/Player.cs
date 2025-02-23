@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
             score = value;
             //UI変更イベント処理
             gameScore.Score = (int)score;
-            Debug.Log(score);
+            //Debug.Log(score);
         }
     }
     public int Combo{
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
                 maxCombo = combo;
             }
             gameCombo.Combo = combo;
-            Debug.Log(combo);
+            //Debug.Log(combo);
         }
     }
     public int MaxCombo{
@@ -74,8 +74,8 @@ public class Player : MonoBehaviour
     {
         currentState = PlayerState.Idling;
 
-        //>>>>>>>>>>>DEV
-        CurrentState = PlayerState.Waiting;
+        // //>>>>>>>>>>>DEV
+        // CurrentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     {
         if(currentKushi == null)
         {
-            currentKushi = dish.GetKushikatsu();
+            TakeKushi();
         }
         if(currentState == PlayerState.Waiting || currentState == PlayerState.Hovering)
         {
@@ -123,8 +123,6 @@ public class Player : MonoBehaviour
     public void Dipping()
     {
         CurrentState = PlayerState.Dipping;
-
-        //>>>>>DEV
         currentKushi.IsDipped = true;
     }
 
@@ -137,19 +135,17 @@ public class Player : MonoBehaviour
 
     public void Eat()
     {
-        int kushiLengthCash = currentKushi.KushiLength;
+        currentKushi.EatKushikatsu();
+        Debug.Log(currentKushi.KushiLength);
 
         //前の串が無くなったら
-        //if(kushiLengthCash <= 1)
-        if(currentKushi.KushiLength <= 1)
+        if(currentKushi.KushiLength <= 0)
         {
             Combo++;
-            Debug.Log(currentKushi.KushiScore * (1 + 0.1 * combo));
             Score += currentKushi.KushiScore * (1 + 0.1 * combo);
+            currentKushi.DestroyKushi();
+            currentKushi = null;
             TakeKushi();
         }
-
-        //串を食べる処理
-        currentKushi.EatKushikatsu();
     }
 }

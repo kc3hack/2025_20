@@ -63,13 +63,13 @@ public class Kushikatsu : MonoBehaviour
     //playerクラスに公開
     public void EatKushikatsu()
     {
-        Debug.Log("EatKushikatsu!");
+        //Debug.Log("EatKushikatsu!");
         //食べるときに先端をDestroy
         if(kushiLength > 0)
         {
             Destroy(_kushiPieces[kushiLength - 1]);
             _kushiPieces[kushiLength - 1] = null;
-            Debug.Log("sentan Destroy");
+            //Debug.Log("sentan Destroy");
         }
 
         kushiLength--;
@@ -124,16 +124,22 @@ public class Kushikatsu : MonoBehaviour
         }
     }
 
+    public void DestroyKushi()
+    {
+        ApplySpecialEffect();
+        Destroy(gameObject);
+    }
+
     public void ApplySpecialEffect()
     {
-        Debug.Log(OnSpecialEffect);
+        //Debug.Log(OnSpecialEffect);
         if(OnSpecialEffect == null)
         {
-            Debug.Log("普通の串！");
+            //Debug.Log("普通の串！");
         }
         else
         {
-            Debug.Log("OnSpecialEffect");
+            //Debug.Log("OnSpecialEffect");
             OnSpecialEffect?.Invoke(comment);
             //OnSpecialEffect();
         }
