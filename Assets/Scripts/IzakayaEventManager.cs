@@ -68,7 +68,10 @@ public class IzakayaEventmanager : MonoBehaviour
     }
     void PlayAudio()
     {
-        //soundManager.PlaySoundEffect(currentEvent.audioClip);
+        if(currentEvent.audioClip != null)
+        {
+            soundManager.PlaySoundEffect(currentEvent.audioClip);
+        }
     }
     void ShowHukidashi()
     {

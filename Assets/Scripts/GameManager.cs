@@ -86,12 +86,13 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         middleFinger.SetActive(true);
-        player.CurrentState = PlayerState.Idling;
+        player.CurrentState = PlayerState.GameOver;
         shopKeeper.CurrentState = ShopKeeperState.Idling;
         currentGameState = GameState.GameOver;
         timer.StopTimer();
 
-        ShowResult();
+        //ShowResult();
+        StartCoroutine(GameOverCoroutine());
     }
 
     void TimeOver()
@@ -104,6 +105,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("TimeOver!");
     }
 
+    IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+
+        ShowResult();
+    }
     
     void ShowResult()
     {

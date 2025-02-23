@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6979c2ed70544b948abeb66b1210fb0c, type: 3}
   m_Name: KyakuiriEvent
   m_EditorClassIdentifier: 
-  audioIndex: 0
   eventString: "\u30AC\u30E9\u30C3"
   lookAtPlayerTime: 3.0008316
+  audioClip: {fileID: 8300000, guid: 792a486f291ad1948a11914e649db7e6, type: 3}

@@ -308,6 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e8c12702c9ca745b40540f07f25b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 251251281}
+  countDownAudio: {fileID: 8300000, guid: d9a832a48a3ba9f40955a8f998e1e52b, type: 3}
+  doraAudio: {fileID: 8300000, guid: 6f150ce4cc56f844c8dd576762d91e5f, type: 3}
   countdownText: {fileID: 199185843}
   countdownDefault: 3
 --- !u!114 &12179985
@@ -676,6 +679,9 @@ MonoBehaviour:
   gameCombo: {fileID: 123787134}
   mouseOffset: {x: 93, y: 28, z: 0}
   animController: {fileID: 278836044}
+  soundManager: {fileID: 251251281}
+  dippingAudio: {fileID: 8300000, guid: e26c4b8902944d644af4c99b391ea693, type: 3}
+  eatAudio: {fileID: 8300000, guid: 12577cb4bf13771409dbeaf81236e815, type: 3}
   previousHovering: 0
 --- !u!4 &146477384
 Transform:
@@ -936,10 +942,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 146477383}
   exitGameButton: {fileID: 311764271}
-  scoreText: {fileID: 0}
-  comboText: {fileID: 0}
-  scoreTextAnim: {fileID: 0}
-  comboTextAnim: {fileID: 0}
+  scoreText: {fileID: 701362359}
+  comboText: {fileID: 321917927}
+  scoreTextAnim: {fileID: 701362361}
+  comboTextAnim: {fileID: 321917929}
   animationDelay: 1
 --- !u!1 &199185841
 GameObject:
@@ -1120,6 +1126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopKeeperAnim: {fileID: 610276981}
+  soundManager: {fileID: 251251281}
+  turnAudio: {fileID: 8300000, guid: 39b9987bf72b8c2439f44319557121cb, type: 3}
 --- !u!1001 &226935964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1389,6 +1397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 146477387}
   kushiAnimator: {fileID: 0}
+  soundManager: {fileID: 251251281}
+  bombAudio: {fileID: 8300000, guid: 062099d19c91d6f4793130255f8f55cd, type: 3}
 --- !u!4 &278836045
 Transform:
   m_ObjectHideFlags: 0
@@ -2478,6 +2488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopShopkeeper: 0
   alertSpriteControler: {fileID: 713982706}
+  soundManager: {fileID: 251251281}
   currentState: 3
   alert: 0
   baseProbability: 10
@@ -2488,6 +2499,7 @@ MonoBehaviour:
   shopKeeperAnim: {fileID: 0}
   alertAnim: {fileID: 0}
   animController: {fileID: 218428310}
+  turnAduio: {fileID: 8300000, guid: 39b9987bf72b8c2439f44319557121cb, type: 3}
 --- !u!212 &610276980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2597,6 +2609,8 @@ MonoBehaviour:
   countDown: {fileID: 12179984}
   currentGameState: 0
   middleFinger: {fileID: 1142134134}
+  soundManager: {fileID: 251251281}
+  bombAduio: {fileID: 8300000, guid: 062099d19c91d6f4793130255f8f55cd, type: 3}
   resultPanel: {fileID: 182268573}
 --- !u!4 &613742805
 Transform:
@@ -3341,6 +3355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c613535ad103eda4db40af73549b381c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 251251281}
+  alertAudio: {fileID: 8300000, guid: d9a832a48a3ba9f40955a8f998e1e52b, type: 3}
   alertSpriteObj: {fileID: 714044658}
   alertValueObj: {fileID: 1339076104}
 --- !u!114 &713982707
