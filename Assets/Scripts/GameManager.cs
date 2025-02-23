@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]CountDown countDown;
     [SerializeField]GameState currentGameState;
     [SerializeField]GameObject middleFinger;
+    [SerializeField]DataManager dataManager;
 
     //Audio
     [SerializeField]SoundManager soundManager;
@@ -90,6 +91,8 @@ public class GameManager : MonoBehaviour
         shopKeeper.CurrentState = ShopKeeperState.Idling;
         currentGameState = GameState.GameOver;
         timer.StopTimer();
+        dataManager.SaveData(player.Score, player.MaxCombo);
+        Debug.Log("DataSaved GameManager");
 
         //ShowResult();
         StartCoroutine(GameOverCoroutine());
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
         player.CurrentState = PlayerState.Idling;
         shopKeeper.CurrentState = ShopKeeperState.Idling;
         currentGameState = GameState.TimeOver;
+        dataManager.SaveData(player.Score, player.MaxCombo);
 
         ShowResult();
         Debug.Log("TimeOver!");
