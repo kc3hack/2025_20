@@ -1788,12 +1788,13 @@ MonoBehaviour:
   - {fileID: -7845088690583888274, guid: ef10fabe6687d98458cd4218e2406f51, type: 3}
   - {fileID: 5074268465934835140, guid: af5181fe4518de54ba69e5f618bd090f, type: 3}
   - {fileID: -6601504152411802229, guid: 06a04d6c47eb48d468608558196afea4, type: 3}
-  debuffWeight: 0
+  debuffWeight: 6
   normalKushikatsu:
   - {fileID: -4527668118388803338, guid: 9a3ee71422c28864dbaffeb6ad7ae8c4, type: 3}
   normalWeight: 100
   onDishKatsusList: []
-  offset: {x: 0.53, y: 0, z: 0}
+  spawncenter: 2.24
+  spawnOffset: {x: 1.55, y: 0, z: 0}
 --- !u!4 &371166789
 Transform:
   m_ObjectHideFlags: 0
@@ -1803,7 +1804,7 @@ Transform:
   m_GameObject: {fileID: 371166787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.016230796, w: 0.9998683}
-  m_LocalPosition: {x: 0.1, y: -0.42, z: -0.013267493}
+  m_LocalPosition: {x: -1.12, y: -0.38, z: -0.013267493}
   m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
   m_ConstrainProportionsScale: 1
   m_Children: []
