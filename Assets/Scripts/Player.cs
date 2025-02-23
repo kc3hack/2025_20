@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
     {
         currentState = PlayerState.Idling;
 
-        // //>>>>>>>>>>>DEV
+        //>>>DEV
         // CurrentState = PlayerState.Waiting;
     }
 
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
                     //たれの上をホバーしていたら
                     Dipping();
 
-                    //>>>>>>>>>>>>DEV
+                    //>>>DEV
                     //Eat();
                 }
             }
