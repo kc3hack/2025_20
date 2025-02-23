@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] List<AudioClip> backGroundSoundList;
     // Startより先に実行される
     // 初期化処理を記述
-    void Awake()
+    void Start()
     {
         // リストの数だけAudioSourceを作成し、格納する
         for (var i = 0; i < soundEffectSourcesList.Length; i++)

@@ -50,13 +50,13 @@ public class CountDown : MonoBehaviour
         {
             if(i > 0)
             {
-                soundManager.PlaySoundEffect(countDownAudio);
+                soundManager.PlaySoundEffect(countDownAudio, 0.8f);
                 ShowCountdown(i);
                 Debug.Log(i);
             }
             else
             {
-                soundManager.PlaySoundEffect(doraAudio);
+                soundManager.PlaySoundEffect(doraAudio, 0.7f);
                 countdownText.text = endMessage;
                 StartCoroutine(HideCoundDonwCoroutine());
                 Debug.Log(gameTimeScale);

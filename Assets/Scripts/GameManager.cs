@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     //Audio
     [SerializeField]SoundManager soundManager;
     [SerializeField]AudioClip bombAduio;
+    [SerializeField]AudioClip gayaAudio;
 
     //UI
     [SerializeField]GameObject resultPanel;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager.PlayBuckGorundSound(gayaAudio, 0.5f);
         IsAlreadyStart = false;
         Time.timeScale = 0f;
         currentGameState = GameState.Idling;
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
     
     void ShowResult()
     {
+        soundManager.StopBackGroundSound();
         Time.timeScale = 0;
         timer.StopTimer();
         currentGameState = GameState.Result;

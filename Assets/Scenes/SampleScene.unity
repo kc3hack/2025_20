@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 251251281}
-  countDownAudio: {fileID: 8300000, guid: d9a832a48a3ba9f40955a8f998e1e52b, type: 3}
+  countDownAudio: {fileID: 8300000, guid: 569ea1aa4c01f95449eb06ed63ada6f0, type: 3}
   doraAudio: {fileID: 8300000, guid: 6f150ce4cc56f844c8dd576762d91e5f, type: 3}
   countdownText: {fileID: 199185843}
   countdownDefault: 3
@@ -1782,13 +1782,13 @@ MonoBehaviour:
   - {fileID: -6845658182308905540, guid: b36b23447ac85174e813ae3d72f3df93, type: 3}
   - {fileID: -5793924417701016968, guid: 63bfaa5bbcecb5d4d9dcb7b3ac40397c, type: 3}
   - {fileID: -6872241121926507001, guid: e3f374a7bc987db4cbcc7e5dd78e6253, type: 3}
-  SSRWeight: 0
+  SSRWeight: 20
   debuffKushikatsus:
   - {fileID: 787234401162470946, guid: 42a9949946d6eac48976603844365a6a, type: 3}
   - {fileID: -7845088690583888274, guid: ef10fabe6687d98458cd4218e2406f51, type: 3}
   - {fileID: 5074268465934835140, guid: af5181fe4518de54ba69e5f618bd090f, type: 3}
   - {fileID: -6601504152411802229, guid: 06a04d6c47eb48d468608558196afea4, type: 3}
-  debuffWeight: 6
+  debuffWeight: 5
   normalKushikatsu:
   - {fileID: -4527668118388803338, guid: 9a3ee71422c28864dbaffeb6ad7ae8c4, type: 3}
   normalWeight: 100
@@ -2352,6 +2352,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049190142}
+  - {fileID: 2005906571}
   - {fileID: 55126695}
   - {fileID: 613742805}
   - {fileID: 251251280}
@@ -2363,7 +2364,6 @@ Transform:
   - {fileID: 371166789}
   - {fileID: 664072865}
   - {fileID: 1357342595}
-  - {fileID: 2005906571}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &556355130
@@ -2614,6 +2614,7 @@ MonoBehaviour:
   dataManager: {fileID: 2005906572}
   soundManager: {fileID: 251251281}
   bombAduio: {fileID: 8300000, guid: 062099d19c91d6f4793130255f8f55cd, type: 3}
+  gayaAudio: {fileID: 8300000, guid: 2bd07740781c4224f80628dac8466a35, type: 3}
   resultPanel: {fileID: 182268573}
 --- !u!4 &613742805
 Transform:
@@ -3359,7 +3360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundManager: {fileID: 251251281}
-  alertAudio: {fileID: 8300000, guid: d9a832a48a3ba9f40955a8f998e1e52b, type: 3}
+  alertAudio: {fileID: 8300000, guid: 48bd385db3aaf80409b5573f8936e259, type: 3}
   alertSpriteObj: {fileID: 714044658}
   alertValueObj: {fileID: 1339076104}
 --- !u!114 &713982707

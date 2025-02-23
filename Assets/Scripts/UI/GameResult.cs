@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameResult : MonoBehaviour
 {
+    //
     [SerializeField]Player player;
     [SerializeField]GameObject exitGameButton;
     [SerializeField]TMP_Text scoreText;

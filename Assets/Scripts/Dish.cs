@@ -82,12 +82,12 @@ public class Dish : MonoBehaviour
         else if(randomValue < normalProbability + debuffProbability)
         {
             //デバフ串の場合は特殊効果を割り当てる
-            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
+            choseKushi = Instantiate<Kushikatsu>(debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
             choseKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
         }
         else
         {
-            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
+            choseKushi = Instantiate<Kushikatsu>(SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
         }
 
         return choseKushi;

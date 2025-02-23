@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.7074816, y: -0.5269143, z: 0.004693497}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9079649469005160354}
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 448332914, guid: c421842c7918a9d459cc2cc151f42f8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   kushiLength: 0
   baseKushiScore: 30
   offsetY: 2
-  offsetPos: {x: -3.32, y: 0.32, z: 0}
+  offsetPos: {x: 0, y: 0, z: 0}
   isDipped: 0
 --- !u!61 &-5829661930971007945
 BoxCollider2D:
@@ -202,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6998851563967509897, guid: d3529fd5860c2f045b4c0ac4e8438d06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.24
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 6998851563967509897, guid: d3529fd5860c2f045b4c0ac4e8438d06, type: 3}
       propertyPath: m_LocalPosition.y

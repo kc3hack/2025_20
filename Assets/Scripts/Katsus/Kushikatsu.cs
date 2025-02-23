@@ -49,7 +49,7 @@ public class Kushikatsu : MonoBehaviour
             KushiLength = 4;
         }
         //>>>DEV
-        //kushiLength = 2;
+        kushiLength = 2;
 
         //得点を計算
         for(int i = 1; i < kushiLength+1; i++)
@@ -89,7 +89,7 @@ public class Kushikatsu : MonoBehaviour
             piece.transform.localPosition = new Vector3(offsetPos.x, offsetPos.y + i * offsetY, 0f);
             SpriteRenderer renderer = piece.AddComponent<SpriteRenderer>();
             renderer.sprite = baseSprite;
-            renderer.sortingOrder = 3;
+            renderer.sortingOrder = 4;
             _kushiPieces[i] = piece;
         }
     }
@@ -131,6 +131,7 @@ public class Kushikatsu : MonoBehaviour
         {
             //Debug.Log("OnSpecialEffect");
             OnSpecialEffect?.Invoke(comment);
+            Debug.Log(comment);
             //OnSpecialEffect();
         }
     }
