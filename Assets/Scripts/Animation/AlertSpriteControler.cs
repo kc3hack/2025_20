@@ -5,6 +5,11 @@ using TMPro;
 
 public class AlertSpriteControler : MonoBehaviour
 {
+    //Auiod
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip alertAudio;
+
+    //
     [SerializeField]GameObject alertSpriteObj;
     [SerializeField]GameObject alertValueObj;
     Animator alertSpriteAnim;
@@ -25,6 +30,7 @@ public class AlertSpriteControler : MonoBehaviour
         {
             ShowAlertSprite();
         }
+        soundManager.PlaySoundEffect(alertAudio);
         ShowAlertValue(v);
     }
 

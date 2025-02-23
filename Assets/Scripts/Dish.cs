@@ -6,6 +6,7 @@ using UnityEngine;
 public class Dish : MonoBehaviour
 {
     [SerializeField]IzakayaEventmanager izakayaEventmanager;
+    [SerializeField]Hand hand;
     [SerializeField]Kushikatsu[] SSRKushikatsus;
     [SerializeField, Range(0, 100)]int SSRWeight = 1;
     [SerializeField]Kushikatsu[] debuffKushikatsus;
@@ -14,7 +15,8 @@ public class Dish : MonoBehaviour
     [SerializeField, Range(0, 100)]int normalWeight = 100;
 
     [SerializeField]List<Kushikatsu> onDishKatsusList;
-    [SerializeField]Vector3 offset = new Vector3(0.1f, 0, 0);
+    [SerializeField]float spawncenter = 0;
+    [SerializeField]Vector3 spawnOffset;
     int maxKushiLength = 5;
 
     // Start is called before the first frame update
@@ -29,28 +31,28 @@ public class Dish : MonoBehaviour
         UpdateVisuals();
         for(int i = 0; i < maxKushiLength; i++)
         {
-            //Vector3 katsuPos = offset * ((-maxKushiLength / 2 ) + i);
-            //Kushikatsu kushikatsuObject = Instantiate(SpawnKatsu(), katsuPos, quaternion.identity);
-            Kushikatsu kushikatsuObject = SpawnKatsu();
-            kushikatsuObject.transform.SetParent(transform, false);
+            Kushikatsu kushikatsuObject = SpawnKatsu(i);
+            //kushikatsuObject.transform.SetParent(transform, false);
             onDishKatsusList.Add(kushikatsuObject);
         }
     }
 
-    //>>>>>DEV
-    Vector3 previousOffset;
+    //>>>DEV
+    float a;
+    Vector3 b;
     void Update()
     {
-        if(previousOffset != offset)
+        if(a != spawncenter || b != spawnOffset)
         {
             int i = 0;
             foreach(Kushikatsu kushi in onDishKatsusList)
             {
-                kushi.transform.position = offset * ((-maxKushiLength / 2) + i);
+                kushi.transform.localPosition = new Vector3(spawncenter + spawnOffset.x * ((-maxKushiLength / 2f) + i), spawnOffset.y, 0);
                 i++;
             }
+            a = spawncenter;
+            b = spawnOffset;
         }
-        previousOffset = offset;
     }
 
     void UpdateVisuals()
@@ -60,8 +62,8 @@ public class Dish : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-    int d = 0;
-    Kushikatsu SpawnKatsu()
+
+    Kushikatsu SpawnKatsu(int i)
     {
         int normalProbability = normalWeight * normalKushikatsu.Length;
         int debuffProbability = debuffWeight * debuffKushikatsus.Length;
@@ -73,36 +75,20 @@ public class Dish : MonoBehaviour
         //Debug.Log(randomValue);
         Kushikatsu choseKushi;
 
-        // if(randomValue < normalProbability)
-        // {
-        //     return normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)];
-        // }
-        // else if(randomValue < normalProbability + debuffProbability)
-        // {
-        //     //デバフ串の場合は特殊効果を割り当てる
-        //     Kushikatsu chosenKushi = debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)];
-        //     chosenKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
-        //     return chosenKushi;
-        // }
-        // else
-        // {
-        //     return SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)];
-        // }
         if(randomValue < normalProbability)
         {
-            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
+            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
         }
         else if(randomValue < normalProbability + debuffProbability)
         {
             //デバフ串の場合は特殊効果を割り当てる
-            choseKushi = Instantiate<Kushikatsu>(debuffKushikatsus[UnityEngine.Random.Range(0, debuffKushikatsus.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
+            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
             choseKushi.OnSpecialEffect += izakayaEventmanager.KushiEvent;
         }
         else
         {
-            choseKushi = Instantiate<Kushikatsu>(SSRKushikatsus[UnityEngine.Random.Range(0, SSRKushikatsus.Length)], offset * ((-maxKushiLength / 2 ) + d), quaternion.identity);
+            choseKushi = Instantiate<Kushikatsu>(normalKushikatsu[UnityEngine.Random.Range(0, normalKushikatsu.Length)], new Vector3(spawncenter + spawnOffset.x * (-maxKushiLength / 2f) + i, spawnOffset.y, spawnOffset.z), quaternion.identity, gameObject.transform);
         }
-        d++;
 
         return choseKushi;
     }
@@ -112,7 +98,8 @@ public class Dish : MonoBehaviour
         if(onDishKatsusList[0])
         {
             Kushikatsu taken = onDishKatsusList[0];
-            //taken.transform.SetParent(null);
+            taken.transform.SetParent(hand.transform);
+            taken.transform.localPosition = new Vector3(0f, 0f, 0f);
             onDishKatsusList.RemoveAt(0);
             //Debug.Log(onDishKatsusList);
 

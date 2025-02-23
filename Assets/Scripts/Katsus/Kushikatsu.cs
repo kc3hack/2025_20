@@ -11,8 +11,9 @@ public class Kushikatsu : MonoBehaviour
     [SerializeField]Sprite topSprite;   //ソース付きスプライト
     [SerializeField]string comment = "";
     [SerializeField]int kushiLength;    //串の長さ
-    [SerializeField]int baseKushiScore = 0;
-    [SerializeField]float offsetY = 20f; //スプライト間のY軸オフセット
+    [SerializeField]int baseKushiScore = 10;
+    [SerializeField]float offsetY; //スプライト間のY軸オフセット
+    [SerializeField]Vector3 offsetPos;
     [SerializeField]bool isDipped = false;  //ソースがついているかどうか
     GameObject[] _kushiPieces;
     const int maxKushiLength = 7; //串の最大長
@@ -41,47 +42,39 @@ public class Kushikatsu : MonoBehaviour
     void Awake()
     {
         //ランダムに串の長さを指定
-        kushiLength = UnityEngine.Random.Range(1, maxKushiLength+1);
+        KushiLength = UnityEngine.Random.Range(1, maxKushiLength+1);
         //長さ6は除外
         if(kushiLength == 5 || kushiLength == 6)
         {
-            kushiLength = 4;
+            KushiLength = 4;
         }
+        //>>>DEV
+        //kushiLength = 2;
 
         //得点を計算
-        for(int i = 0; i < kushiLength; i++)
+        for(int i = 1; i < kushiLength+1; i++)
         {
             kushiScore += baseKushiScore * i;
         }
+        //Debug.Log(kushiScore);
 
         CreateSprite();
     }
 
+
     //playerクラスに公開
     public void EatKushikatsu()
     {
-        Debug.Log("EatKushikatsu!");
         //食べるときに先端をDestroy
         if(kushiLength > 0)
         {
             Destroy(_kushiPieces[kushiLength - 1]);
             _kushiPieces[kushiLength - 1] = null;
-            Debug.Log("sentan Destroy");
+            UpdateSprite();
         }
 
-        kushiLength--;
-        isDipped = false;
-
-        //カツがなくなったら、破壊
-        if(kushiLength <= 0)
-        {
-            ApplySpecialEffect();
-            Destroy(gameObject);
-            return;
-        }
-
-        //スプライトをアップデート
-        UpdateSprite();
+        KushiLength--;
+        IsDipped = false;
     }
 
     void CreateSprite()
@@ -92,10 +85,11 @@ public class Kushikatsu : MonoBehaviour
         {
             GameObject piece = new GameObject("KushiPiece_" + i);
             piece.transform.SetParent(transform);
-            piece.transform.localPosition = new Vector3(0, i * offsetY, 0f);
+            piece.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            piece.transform.localPosition = new Vector3(offsetPos.x, offsetPos.y + i * offsetY, 0f);
             SpriteRenderer renderer = piece.AddComponent<SpriteRenderer>();
             renderer.sprite = baseSprite;
-            renderer.sortingOrder = 2;
+            renderer.sortingOrder = 3;
             _kushiPieces[i] = piece;
         }
     }
@@ -120,16 +114,22 @@ public class Kushikatsu : MonoBehaviour
         }
     }
 
+    public void DestroyKushi()
+    {
+        ApplySpecialEffect();
+        Destroy(gameObject);
+    }
+
     public void ApplySpecialEffect()
     {
-        Debug.Log(OnSpecialEffect);
+        //Debug.Log(OnSpecialEffect);
         if(OnSpecialEffect == null)
         {
-            Debug.Log("普通の串！");
+            //Debug.Log("普通の串！");
         }
         else
         {
-            Debug.Log("OnSpecialEffect");
+            //Debug.Log("OnSpecialEffect");
             OnSpecialEffect?.Invoke(comment);
             //OnSpecialEffect();
         }

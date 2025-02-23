@@ -5,10 +5,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]Dish dish;
+    [SerializeField]Hand hand;
     [SerializeField]Kushikatsu currentKushi;
     [SerializeField]PlayerState currentState = PlayerState.Idling;
     [SerializeField]double score = 0;
     [SerializeField]Animator playerAnim;
+    [SerializeField]GameScore gameScore;
+    [SerializeField]GameCombo gameCombo;
+    [SerializeField]Vector3 mouseOffset;
+    [SerializeField]PlayerAnimController animController;
+
+    //
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip dippingAudio;
+    [SerializeField]AudioClip eatAudio;
     
     int combo = 0;
     int maxCombo = 0;
@@ -24,6 +34,8 @@ public class Player : MonoBehaviour
         set{
             score = value;
             //UI変更イベント処理
+            gameScore.Score = (int)score;
+            //Debug.Log(score);
         }
     }
     public int Combo{
@@ -36,7 +48,8 @@ public class Player : MonoBehaviour
             {
                 maxCombo = combo;
             }
-            Debug.Log($"current combo value: {combo}");
+            gameCombo.Combo = combo;
+            //Debug.Log(combo);
         }
     }
     public int MaxCombo{
@@ -47,10 +60,10 @@ public class Player : MonoBehaviour
         get{ return currentState; }
         set{
             currentState = value;
+            Debug.Log($"currentStateのSettarを実行: {currentState}");
+            animController.PlayPlayerAnim(currentState);
             if(currentState == PlayerState.GameOver)
             {
-                //アニメーション
-                //playerAnim.SetTrigger();
                 Debug.Log($"current state: {currentState}");
             }
             previousHovering = false;
@@ -64,10 +77,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        //currentState = PlayerState.Idling;
+        currentState = PlayerState.Idling;
 
-        //>>>>>>>>>>>DEV
-        currentState = PlayerState.Waiting;
+        // //>>>>>>>>>>>DEV
+        // CurrentState = PlayerState.Waiting;
     }
 
     // Update is called once per frame
@@ -75,16 +88,19 @@ public class Player : MonoBehaviour
     {
         if(currentKushi == null)
         {
-            currentKushi = dish.GetKushikatsu();
+            TakeKushi();
         }
         if(currentState == PlayerState.Waiting || currentState == PlayerState.Hovering)
         {
-            //カツをマウスの位置に
-            mousePos = Input.mousePosition;
+            // //カツをマウスの位置に
+            mousePos = Input.mousePosition + mouseOffset;
             mousePos.z = -Camera.main.transform.position.z;
             mousePosWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
             mousePosWorldPoint.z = 0f;
-            currentKushi.transform.position = mousePosWorldPoint;
+            // currentKushi.transform.position = mousePosWorldPoint;
+
+            //handをマウスの位置にワープ
+            hand.transform.position = mousePosWorldPoint;
 
             //マウスクリック
             if(Input.GetMouseButtonDown(0))
@@ -95,7 +111,7 @@ public class Player : MonoBehaviour
                     Dipping();
 
                     //>>>>>>>>>>>>DEV
-                    Eat();
+                    //Eat();
                 }
             }
         }
@@ -109,12 +125,11 @@ public class Player : MonoBehaviour
         //一口食べるアニメーション
     }
 
-    void Dipping()
+    public void Dipping()
     {
-        currentState = PlayerState.Dipping;
-
-        //アニメーション
-        //playerAnim.SetTrigger();
+        soundManager.PlaySoundEffect(dippingAudio);
+        CurrentState = PlayerState.Dipping;
+        currentKushi.IsDipped = true;
     }
 
     public void SetKushiState()
@@ -126,24 +141,19 @@ public class Player : MonoBehaviour
 
     public void Eat()
     {
-        int kushiLengthCash = currentKushi.KushiLength;
-        //操作を無効化
-        currentState = PlayerState.Idling;
-
-        //アニメーション
-        //playerAnim.SetTrigger();
-
-        //串を食べる処理
+        soundManager.PlaySoundEffect(eatAudio);
+        //カツを食べる
         currentKushi.EatKushikatsu();
+        //Debug.Log(currentKushi.KushiLength);
 
         //前の串が無くなったら
-        if(kushiLengthCash <= 0)
+        if(currentKushi.KushiLength <= 0)
         {
+            Combo++;
             Score += currentKushi.KushiScore * (1 + 0.1 * combo);
+            currentKushi.DestroyKushi();
+            currentKushi = null;
             TakeKushi();
         }
-
-        //操作可能に
-        currentState = PlayerState.Waiting;
     }
 }

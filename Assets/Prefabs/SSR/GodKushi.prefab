@@ -75,16 +75,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 448332914, guid: c421842c7918a9d459cc2cc151f42f8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.86999995, y: 12.591348}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-5793924417701016968
@@ -99,11 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdad666ed64599747a7c8a40aafc62b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSprite: {fileID: 0}
-  topSprite: {fileID: 0}
+  baseSprite: {fileID: 367463311, guid: 4b9cf4fc610fc06438a351e5e0e5926b, type: 3}
+  topSprite: {fileID: -1201702937, guid: a72c482bd90ae874489704badc4a1c90, type: 3}
+  comment: 
   kushiLength: 0
-  baseKushiScore: 0
-  offsetY: 1
+  baseKushiScore: 15
+  offsetY: 2
+  offsetPos: {x: -3.32, y: -0.32, z: 0}
   isDipped: 0
 --- !u!61 &4574832554563539788
 BoxCollider2D:
@@ -140,10 +142,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.86999995, y: 12.591348}
+    newSize: {x: 0.86999995, y: 12.591348}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -160,7 +162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3140865630838537580, guid: 24d85f40dc231c94e8f91ecf5bcf8d63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 3140865630838537580, guid: 24d85f40dc231c94e8f91ecf5bcf8d63, type: 3}
       propertyPath: m_LocalPosition.y

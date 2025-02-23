@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,26 +11,39 @@ public class GameManager : MonoBehaviour
     [SerializeField]ShopKeeper shopKeeper;
     [SerializeField]IzakayaEventmanager izakayaEvent;
     [SerializeField]Timer timer;
+    [SerializeField]CountDown countDown;
     [SerializeField]GameState currentGameState;
     [SerializeField]GameObject middleFinger;
+
+    //Audio
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip bombAduio;
+
     //UI
     [SerializeField]GameObject resultPanel;
 
+    public bool IsAlreadyStart{ get; private set; } = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //>>>>>>>>>DEV
-        currentGameState = GameState.Playing;
+        IsAlreadyStart = false;
+        Time.timeScale = 0f;
+        currentGameState = GameState.Idling;
+        countDown.StartCountDown(3, "START!", 1f);
     }
+
     void FixedUpdate()
     {
+        if(IsAlreadyStart == false)
+        {
+            StartGame();
+        }
         if(currentGameState == GameState.Playing)
         {
             GameUpdate();
         }
     }
-
 
     void GameUpdate()
     {
@@ -62,19 +76,23 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        IsAlreadyStart = true;
+        currentGameState = GameState.Playing;
+        player.CurrentState = PlayerState.Waiting;
+        shopKeeper.CurrentState = ShopKeeperState.LookingAtKitchen;
         timer.StartTimer();
     }
 
     void GameOver()
     {
         middleFinger.SetActive(true);
-        player.CurrentState = PlayerState.Idling;
+        player.CurrentState = PlayerState.GameOver;
         shopKeeper.CurrentState = ShopKeeperState.Idling;
         currentGameState = GameState.GameOver;
         timer.StopTimer();
-        //Time.timeScale = 0;
 
-        Debug.Log("GameOver!");
+        //ShowResult();
+        StartCoroutine(GameOverCoroutine());
     }
 
     void TimeOver()
@@ -87,6 +105,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("TimeOver!");
     }
 
+    IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+
+        ShowResult();
+    }
+    
     void ShowResult()
     {
         Time.timeScale = 0;

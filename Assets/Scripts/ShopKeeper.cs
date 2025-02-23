@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
 {
+    [SerializeField]bool stopShopkeeper = false;
     [SerializeField]AlertSpriteControler alertSpriteControler;
+    [SerializeField]SoundManager soundManager;
     [SerializeField]ShopKeeperState currentState = ShopKeeperState.LookingAtKitchen;   //現在のステート
     [SerializeField]int alert = 0;      //警戒値
     [SerializeField, Range(0f, 100f)]float baseProbability = 10f;
@@ -14,6 +16,8 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField]float turnGreed = 0;
     [SerializeField]Animator shopKeeperAnim;
     [SerializeField]Animator alertAnim;
+    [SerializeField]ShopKeeperAnimController animController;
+    [SerializeField]AudioClip turnAduio;
 
     Coroutine lookAtPlayerCoroutine;
 
@@ -23,6 +27,8 @@ public class ShopKeeper : MonoBehaviour
         }
         set{
             currentState = value;
+            soundManager.PlaySoundEffect(turnAduio);
+            animController.PlayShopKeeperAnim(currentState);
         }
     }
     public int Alert{
@@ -44,24 +50,33 @@ public class ShopKeeper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //currentState = ShopKeeperState.Idoling;
+        currentState = ShopKeeperState.Idling;
     }
 
     // Update is called once per frame
     public void UpdateShopKeeper()
     {
-        //振り向き抽選
-        if(currentState == ShopKeeperState.LookingAtKitchen)
+        //>>>DEV
+        if(stopShopkeeper)
         {
-            CheckForTurn();
-            if(turnGreed >= turnThreshold)
+            currentState = ShopKeeperState.LookingAtKitchen;
+            return;
+        }
+        if(currentState != ShopKeeperState.Idling)
+        {
+            //振り向き抽選
+            if(currentState == ShopKeeperState.LookingAtKitchen)
             {
-                //警戒度に応じて振り向いている時間を増やす
-                LookAtPlayer(turningTime + UnityEngine.Random.Range(0f, alert * 0.8f));
+                CheckForTurn();
+                if(turnGreed >= turnThreshold)
+                {
+                    //警戒度に応じて振り向いている時間を増やす
+                    LookAtPlayer(turningTime + UnityEngine.Random.Range(0f, alert * 0.8f));
 
-                //animator.SetBool();
+                    //animator.SetBool();
 
-                turnGreed = 0;
+                    turnGreed = 0;
+                }
             }
         }
     }
@@ -73,7 +88,7 @@ public class ShopKeeper : MonoBehaviour
             StopCoroutine(lookAtPlayerCoroutine);
         }
 
-        currentState = ShopKeeperState.LookingAtPlayer;
+        CurrentState = ShopKeeperState.LookingAtPlayer;
         //アニメーション
         lookAtPlayerCoroutine = StartCoroutine(LookAtPlayerCoroutine(lookingTime));
     }
@@ -85,7 +100,7 @@ public class ShopKeeper : MonoBehaviour
         yield return new WaitForSeconds(lookingTime);
 
         //Kitchenを見るアニメーション
-        currentState = ShopKeeperState.LookingAtKitchen;
+        CurrentState = ShopKeeperState.LookingAtKitchen;
         
 
         lookAtPlayerCoroutine = null;

@@ -48,8 +48,12 @@ public class SoundManager : MonoBehaviour
         return null;    // 未使用のAudioSourceがないとき、nullを返す
     }
 
-    // SoundをPlayする関数
-    public void PlaySoundEffect(int soundNumber)
+    /// <summary>
+    /// 定義済みリストから効果音を鳴らす関数
+    /// </summary>
+    /// <param name="soundNumber">効果音のリストのインデックス</param>
+    /// <param name="vol">音量を設定します。0.0～1.0</param>
+    public void PlaySoundEffect(int soundNumber, float vol = 1f)
     {
         AudioSource source = GetUnusedAudioSource();
         // 未使用のAudioSourceがないとき、処理を終了する
@@ -61,14 +65,55 @@ public class SoundManager : MonoBehaviour
     
         // 未使用のAudioSourceがあれば、音を鳴らす
         source.clip = soundEffectList[soundNumber];
+        source.volume = vol;
         source.Play();
         Debug.Log($"効果音を鳴らします ({source.clip.name})");
     }
 
-    // BGSをPlayする関数
-    public void PlayBuckGorundSound(int bgsNumber)
+    /// <summary>
+    /// AudioClipから効果音を鳴らす関数
+    /// </summary>
+    /// <param name="clip">効果音のAudioClip</param>
+    /// /// <param name="vol">音量を設定します。0.0～1.0</param>
+    public void PlaySoundEffect(AudioClip clip, float vol = 1f)
+    {
+        AudioSource source = GetUnusedAudioSource();
+        // 未使用のAudioSourceがないとき、処理を終了する
+        if (source == null)
+        {
+            Debug.Log("音が鳴らせなかった");
+            return;
+        }
+
+        // 未使用のAudioSourceがあれば、音を鳴らす
+        source.clip = clip;
+        source.volume = vol;
+        source.Play();
+        Debug.Log($"効果音を鳴らします ({source.clip.name})");
+    }
+
+    /// <summary>
+    /// 定義済みリストからBGSを鳴らす関数
+    /// </summary>
+    /// <param name="bgsNumber">BGSのリストのインデックス</param>
+    /// /// <param name="vol">音量を設定します。0.0～1.0</param>
+    public void PlayBuckGorundSound(int bgsNumber, float vol = 1f)
     {
         backGroundSource.clip = backGroundSoundList[bgsNumber];
+        backGroundSource.volume = vol;
+        backGroundSource.Play();
+        Debug.Log($"BGMを鳴らします ({backGroundSource.clip.name})");
+    }
+
+    /// <summary>
+    /// AudioClipからBGSを鳴らす関数
+    /// </summary>
+    /// <param name="clip">BGSのAudioClip</param>
+    /// /// <param name="vol">音量を設定します。0.0～1.0</param>
+    public void PlayBuckGorundSound(AudioClip clip, float vol = 1f)
+    {
+        backGroundSource.clip = clip;
+        backGroundSource.volume = vol;
         backGroundSource.Play();
         Debug.Log($"BGMを鳴らします ({backGroundSource.clip.name})");
     }
