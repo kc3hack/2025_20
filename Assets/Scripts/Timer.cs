@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class GameTimer : MonoBehaviour
 {
     public float timeLeft = 0;
     [SerializeField, Range(1f, 1000f)]float timeLimit = 90f;
