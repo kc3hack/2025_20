@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
         IsAlreadyStart = false;
         Time.timeScale = 0f;
         currentGameState = GameState.Idling;
-        countDown.StartCountDown(10, "START!", 1f);
+        countDown.StartCountDown(3, "START!", 1f);
     }
 
     void FixedUpdate()
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
-
         if(currentGameState == GameState.Playing)
         {
             GameUpdate();
@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         IsAlreadyStart = true;
         currentGameState = GameState.Playing;
         player.CurrentState = PlayerState.Waiting;
+        shopKeeper.CurrentState = ShopKeeperState.LookingAtKitchen;
         timer.StartTimer();
     }
 
