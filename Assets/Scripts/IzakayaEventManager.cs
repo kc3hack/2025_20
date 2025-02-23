@@ -68,15 +68,17 @@ public class IzakayaEventmanager : MonoBehaviour
     }
     void PlayAudio()
     {
-        //soundManager.PlaySoundEffect(currentEvent.audioIndex);
+        //soundManager.PlaySoundEffect(currentEvent.audioClip);
     }
     void ShowHukidashi()
     {
         hukidashiText.text = currentEvent.eventString.ToString();
-        Debug.Log(hukidashiText.text);
         //吹き出しを表示
         hukidashiObj.SetActive(true);
         hukidashiTextObj.SetActive(true);
+
+        //音を鳴らす
+        PlayAudio();
 
         if(hukidashiCoroutine != null)
         {
