@@ -591,7 +591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &145628986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,55 +936,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 146477383}
   exitGameButton: {fileID: 311764271}
---- !u!1 &218428308
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 218428309}
-  - component: {fileID: 218428310}
-  m_Layer: 0
-  m_Name: ShopKeeperAnimController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &218428309
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218428308}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0924168, y: -0.31658491, z: -0.015153761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 662593801}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &218428310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218428308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ebf70303e7ef04c84556257b044285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopKeeperAnim: {fileID: 610276981}
-  scoreText: {fileID: 701362359}
-  comboText: {fileID: 321917927}
-  scoreTextAnim: {fileID: 701362361}
-  comboTextAnim: {fileID: 321917929}
+  scoreText: {fileID: 0}
+  comboText: {fileID: 0}
+  scoreTextAnim: {fileID: 0}
+  comboTextAnim: {fileID: 0}
   animationDelay: 1
 --- !u!1 &199185841
 GameObject:
@@ -1120,6 +1075,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199185841}
   m_CullTransparentMesh: 1
+--- !u!1 &218428308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218428309}
+  - component: {fileID: 218428310}
+  m_Layer: 0
+  m_Name: ShopKeeperAnimController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218428309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218428308}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0924168, y: -0.31658491, z: -0.015153761}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 662593801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &218428310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218428308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ebf70303e7ef04c84556257b044285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopKeeperAnim: {fileID: 610276981}
 --- !u!1001 &226935964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da78473ee5d9d9640af4d52ef8d5e94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopShopkeeper: 1
+  stopShopkeeper: 0
   alertSpriteControler: {fileID: 713982706}
   currentState: 3
   alert: 0

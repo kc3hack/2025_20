@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField]GameCombo gameCombo;
     [SerializeField]Vector3 mouseOffset;
     [SerializeField]PlayerAnimController animController;
+
+    //
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip dippingAudio;
+    [SerializeField]AudioClip eatAudio;
     
     int combo = 0;
     int maxCombo = 0;
@@ -122,6 +127,7 @@ public class Player : MonoBehaviour
 
     public void Dipping()
     {
+        soundManager.PlaySoundEffect(dippingAudio);
         CurrentState = PlayerState.Dipping;
         currentKushi.IsDipped = true;
     }
@@ -135,8 +141,10 @@ public class Player : MonoBehaviour
 
     public void Eat()
     {
+        soundManager.PlaySoundEffect(eatAudio);
+        //カツを食べる
         currentKushi.EatKushikatsu();
-        Debug.Log(currentKushi.KushiLength);
+        //Debug.Log(currentKushi.KushiLength);
 
         //前の串が無くなったら
         if(currentKushi.KushiLength <= 0)

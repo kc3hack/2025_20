@@ -6,6 +6,7 @@ public class ShopKeeper : MonoBehaviour
 {
     [SerializeField]bool stopShopkeeper = false;
     [SerializeField]AlertSpriteControler alertSpriteControler;
+    [SerializeField]SoundManager soundManager;
     [SerializeField]ShopKeeperState currentState = ShopKeeperState.LookingAtKitchen;   //現在のステート
     [SerializeField]int alert = 0;      //警戒値
     [SerializeField, Range(0f, 100f)]float baseProbability = 10f;
@@ -16,6 +17,7 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField]Animator shopKeeperAnim;
     [SerializeField]Animator alertAnim;
     [SerializeField]ShopKeeperAnimController animController;
+    [SerializeField]AudioClip turnAduio;
 
     Coroutine lookAtPlayerCoroutine;
 
@@ -25,6 +27,7 @@ public class ShopKeeper : MonoBehaviour
         }
         set{
             currentState = value;
+            soundManager.PlaySoundEffect(turnAduio);
             animController.PlayShopKeeperAnim(currentState);
         }
     }

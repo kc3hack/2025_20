@@ -7,6 +7,13 @@ using UnityEngine;
 
 public class CountDown : MonoBehaviour
 {
+
+    //Audio
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip countDownAudio;
+    [SerializeField]AudioClip doraAudio;
+
+    //
     [SerializeField]TMP_Text countdownText;
     [SerializeField]int countdownDefault = 3;
     public bool IsRunning{ get; private set;}
@@ -43,11 +50,13 @@ public class CountDown : MonoBehaviour
         {
             if(i > 0)
             {
+                soundManager.PlaySoundEffect(countDownAudio);
                 ShowCountdown(i);
                 Debug.Log(i);
             }
             else
             {
+                soundManager.PlaySoundEffect(doraAudio);
                 countdownText.text = endMessage;
                 StartCoroutine(HideCoundDonwCoroutine());
                 Debug.Log(gameTimeScale);

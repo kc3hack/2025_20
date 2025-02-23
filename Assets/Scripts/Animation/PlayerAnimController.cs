@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerAnimController : MonoBehaviour
 {
     [SerializeField]Animator playerAnimator;
-
     [SerializeField]Animator kushiAnimator;
+
+    //Audio
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip bombAudio;
 
 
     public void PlayPlayerAnim(PlayerState currentState)
@@ -24,6 +27,7 @@ public class PlayerAnimController : MonoBehaviour
                 playerAnimator.SetTrigger("IsPlayerDipping");
                 break;
             case PlayerState.GameOver:
+                soundManager.PlaySoundEffect(bombAudio);
                 playerAnimator.SetBool("IsPlayerBombed", true);
                 Debug.Log("アニメーション：プレイヤーは爆発した");
                 break;

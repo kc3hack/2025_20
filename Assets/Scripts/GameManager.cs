@@ -1,5 +1,4 @@
 using System;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]CountDown countDown;
     [SerializeField]GameState currentGameState;
     [SerializeField]GameObject middleFinger;
+
+    //Audio
+    [SerializeField]SoundManager soundManager;
+    [SerializeField]AudioClip bombAduio;
+
     //UI
     [SerializeField]GameObject resultPanel;
 
