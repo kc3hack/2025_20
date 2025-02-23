@@ -744,7 +744,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 35.079998, y: 24.802656}
+  m_Size: {x: 24.802656, y: 35.079998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 146477387}
-  kushiAnimator: {fileID: 0}
+  kushiAnimator: {fileID: 1357342597}
   soundManager: {fileID: 251251281}
   bombAudio: {fileID: 8300000, guid: 062099d19c91d6f4793130255f8f55cd, type: 3}
 --- !u!4 &278836045
@@ -4385,6 +4385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357342595}
   - component: {fileID: 1357342596}
+  - component: {fileID: 1357342597}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -4421,6 +4422,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorOffset: {x: 0, y: 0, z: 0}
+--- !u!95 &1357342597
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357342594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad613619044780e4ba0df5b655594b4f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1362572257
 GameObject:
   m_ObjectHideFlags: 0

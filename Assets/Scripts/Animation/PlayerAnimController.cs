@@ -24,6 +24,7 @@ public class PlayerAnimController : MonoBehaviour
                 break;
             case PlayerState.Dipping:
                 Debug.Log("アニメーション：カツをディップして食べます。");
+                kushiAnimator.SetTrigger("IsKushiDipped");
                 playerAnimator.SetTrigger("IsPlayerDipping");
                 break;
             case PlayerState.GameOver:
