@@ -1136,6 +1136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673788313}
     m_Modifications:
+    - target: {fileID: 1110127300053024255, guid: d3529fd5860c2f045b4c0ac4e8438d06, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6998851563967509897, guid: d3529fd5860c2f045b4c0ac4e8438d06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2612,6 +2616,7 @@ MonoBehaviour:
   currentGameState: 0
   middleFinger: {fileID: 1142134134}
   dataManager: {fileID: 2005906572}
+  particleManager: {fileID: 55126694}
   soundManager: {fileID: 251251281}
   bombAduio: {fileID: 8300000, guid: 062099d19c91d6f4793130255f8f55cd, type: 3}
   gayaAudio: {fileID: 8300000, guid: 2bd07740781c4224f80628dac8466a35, type: 3}
@@ -4240,6 +4245,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClickParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 1905960949067056424, guid: b8182c2f91529be48a41c0cb3fa1c7ce, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105597025901688469, guid: b8182c2f91529be48a41c0cb3fa1c7ce, type: 3}
+      propertyPath: m_ShadowBias
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5192752699637802442, guid: b8182c2f91529be48a41c0cb3fa1c7ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4928,7 +4941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1673788313
 Transform:
   m_ObjectHideFlags: 0
@@ -5311,6 +5324,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 2247687511523801906, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397500082870086204, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397500082870086204, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397500082870086204, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6397500082870086204, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5350,6 +5379,14 @@ PrefabInstance:
     - target: {fileID: 6397500082870086204, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504662209614922752, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6504662209614922752, guid: a73c436bd06702e40a5b9f020d430da0, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5596,6 +5633,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673788313}
     m_Modifications:
+    - target: {fileID: 5047160693289111175, guid: edfa4b280eb4b22458b6fa733d396109, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047160693289111175, guid: edfa4b280eb4b22458b6fa733d396109, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6830114652226358816, guid: edfa4b280eb4b22458b6fa733d396109, type: 3}
       propertyPath: m_Name
       value: SteamParticle
@@ -5802,6 +5847,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673788313}
     m_Modifications:
+    - target: {fileID: 138562353741662068, guid: d3da0cef9ed97224bbe5bc9af8813489, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906902455881829031, guid: d3da0cef9ed97224bbe5bc9af8813489, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906902455881829031, guid: d3da0cef9ed97224bbe5bc9af8813489, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3823728315414005469, guid: d3da0cef9ed97224bbe5bc9af8813489, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5859,6 +5916,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673788313}
     m_Modifications:
+    - target: {fileID: 4192693882936986831, guid: b04ad15623f69e54f8bdf2facde63f0b, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5901188943804186554, guid: b04ad15623f69e54f8bdf2facde63f0b, type: 3}
       propertyPath: m_Name
       value: SpicyParticle
@@ -5970,6 +6031,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5383965253124540824, guid: 8b0da20ebb573884d990fc2e1ab7d774, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963445196234751043, guid: 8b0da20ebb573884d990fc2e1ab7d774, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5983,6 +6052,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1673788313}
     m_Modifications:
+    - target: {fileID: 957785146613110930, guid: 24d85f40dc231c94e8f91ecf5bcf8d63, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957785146613110930, guid: 24d85f40dc231c94e8f91ecf5bcf8d63, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 957785146613110930, guid: 24d85f40dc231c94e8f91ecf5bcf8d63, type: 3}
       propertyPath: LightsModule.light
       value: 

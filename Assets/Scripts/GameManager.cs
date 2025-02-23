@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]GameState currentGameState;
     [SerializeField]GameObject middleFinger;
     [SerializeField]DataManager dataManager;
+    [SerializeField]ParticleManager particleManager;
 
     //Audio
     [SerializeField]SoundManager soundManager;
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        particleManager.BombEffect(gameObject.transform.position, 10f);
         middleFinger.SetActive(true);
         player.CurrentState = PlayerState.GameOver;
         shopKeeper.CurrentState = ShopKeeperState.Idling;

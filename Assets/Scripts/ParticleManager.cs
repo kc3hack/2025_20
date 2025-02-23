@@ -48,6 +48,7 @@ public class ParticleManager : MonoBehaviour
         bombParticle.transform.position = position;
         bombParticle.transform.localScale = new Vector3(scale, scale, 1f);
         bombParticle.Play();
+        Debug.Log("BOOOOM!");
     }
 
     /// <summary>

@@ -49,7 +49,7 @@ public class Kushikatsu : MonoBehaviour
             KushiLength = 4;
         }
         //>>>DEV
-        kushiLength = 2;
+        //kushiLength = 2;
 
         //得点を計算
         for(int i = 1; i < kushiLength+1; i++)
