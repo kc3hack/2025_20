@@ -48,7 +48,10 @@ public class SoundManager : MonoBehaviour
         return null;    // 未使用のAudioSourceがないとき、nullを返す
     }
 
-    // SoundをPlayする関数
+    /// <summary>
+    /// 定義済みリストから効果音を鳴らす関数
+    /// </summary>
+    /// <param name="soundNumber">効果音のリストのインデックス</param>
     public void PlaySoundEffect(int soundNumber)
     {
         AudioSource source = GetUnusedAudioSource();
@@ -65,10 +68,44 @@ public class SoundManager : MonoBehaviour
         Debug.Log($"効果音を鳴らします ({source.clip.name})");
     }
 
-    // BGSをPlayする関数
+    /// <summary>
+    /// AudioClipから効果音を鳴らす関数
+    /// </summary>
+    /// <param name="clip">効果音のAudioClip</param>
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        AudioSource source = GetUnusedAudioSource();
+        // 未使用のAudioSourceがないとき、処理を終了する
+        if (source == null)
+        {
+            Debug.Log("音が鳴らせなかった");
+            return;
+        }
+
+        // 未使用のAudioSourceがあれば、音を鳴らす
+        source.clip = clip;
+        source.Play();
+        Debug.Log($"効果音を鳴らします ({source.clip.name})");
+    }
+
+    /// <summary>
+    /// 定義済みリストからBGSを鳴らす関数
+    /// </summary>
+    /// <param name="bgsNumber">BGSのリストのインデックス</param>
     public void PlayBuckGorundSound(int bgsNumber)
     {
         backGroundSource.clip = backGroundSoundList[bgsNumber];
+        backGroundSource.Play();
+        Debug.Log($"BGMを鳴らします ({backGroundSource.clip.name})");
+    }
+
+    /// <summary>
+    /// AudioClipからBGSを鳴らす関数
+    /// </summary>
+    /// <param name="clip">BGSのAudioClip</param>
+    public void PlayBuckGorundSound(AudioClip clip)
+    {
+        backGroundSource.clip = clip;
         backGroundSource.Play();
         Debug.Log($"BGMを鳴らします ({backGroundSource.clip.name})");
     }
