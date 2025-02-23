@@ -37,25 +37,25 @@ public class CountDown : MonoBehaviour
         StartCoroutine(CountDownCoroutine(endMessage, timeScale));
     }
 
-    IEnumerator CountDownCoroutine(string endMessage, float timeScale)
+    IEnumerator CountDownCoroutine(string endMessage, float gameTimeScale)
     {
         for(int i = countdown; i >= 0; i--)
         {
-            if(countdown > 0)
+            if(i > 0)
             {
-                ShowCountdown(countdown);
+                ShowCountdown(i);
+                Debug.Log(i);
             }
             else
             {
                 countdownText.text = endMessage;
                 StartCoroutine(HideCoundDonwCoroutine());
+                Debug.Log(gameTimeScale);
             }
-            //Debug.Log(countdown);
-            
-            countdown--;
+
             yield return new WaitForSecondsRealtime(1f);
         }
-        Time.timeScale = timeScale;
+        Time.timeScale = gameTimeScale;
     }
 
     //2秒後に隠す
