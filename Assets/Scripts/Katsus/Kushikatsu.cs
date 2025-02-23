@@ -120,12 +120,6 @@ public class Kushikatsu : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void DestroyKushi()
-    {
-        ApplySpecialEffect();
-        Destroy(gameObject);
-    }
-
     public void ApplySpecialEffect()
     {
         //Debug.Log(OnSpecialEffect);

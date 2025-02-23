@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField]GameCombo gameCombo;
     [SerializeField]Vector3 mouseOffset;
     [SerializeField]PlayerAnimController animController;
-    [SerializeField]PlayerAnimController animController;
     
     int combo = 0;
     int maxCombo = 0;

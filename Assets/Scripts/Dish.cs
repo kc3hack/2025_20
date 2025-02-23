@@ -33,7 +33,6 @@ public class Dish : MonoBehaviour
             //Vector3 katsuPos = offset * ((-maxKushiLength / 2 ) + i);
             //Kushikatsu kushikatsuObject = Instantiate(SpawnKatsu(), katsuPos, quaternion.identity);
             Kushikatsu kushikatsuObject = SpawnKatsu(i);
-            Kushikatsu kushikatsuObject = SpawnKatsu(i);
             kushikatsuObject.transform.SetParent(transform, false);
             onDishKatsusList.Add(kushikatsuObject);
         }
