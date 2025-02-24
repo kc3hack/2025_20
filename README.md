@@ -1,7 +1,6 @@
 # Kanzai Against Nido-zuke Survival Adenture In-izakaya 
 
-![KANSAI](https://kc3.me/cms/wp-content/uploads/2024/11/hack25-eyecatch.png)
-<!-- プロダクト名・イメージ画像を差し変えてください -->
+![KANSAI](https://drive.google.com/file/d/1rQUD4JgBKQtSSKu31g5cFGK2coRo2FOw/view?usp=drivesdk)<!-- プロダクト名・イメージ画像を差し変えてください -->
 
 
 ## チーム名
