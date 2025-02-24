@@ -15,8 +15,8 @@ public class Dish : MonoBehaviour
     [SerializeField, Range(0, 100)]int normalWeight = 100;
 
     [SerializeField]List<Kushikatsu> onDishKatsusList;
-    [SerializeField]float spawncenter = 0;
-    [SerializeField]Vector3 spawnOffset;
+    [SerializeField]float spawncenter = -1f;
+    [SerializeField]Vector3 spawnOffset = new Vector3(1.55f, 0f, 0f);
     int maxKushiLength = 5;
 
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class Dish : MonoBehaviour
         {
             Kushikatsu kushikatsuObject = SpawnKatsu(i);
             //kushikatsuObject.transform.SetParent(transform, false);
+            Debug.Log(i);
             onDishKatsusList.Add(kushikatsuObject);
         }
     }
@@ -42,17 +43,17 @@ public class Dish : MonoBehaviour
     Vector3 b;
     void Update()
     {
-        if(a != spawncenter || b != spawnOffset)
-        {
-            int i = 0;
-            foreach(Kushikatsu kushi in onDishKatsusList)
-            {
-                kushi.transform.localPosition = new Vector3(spawncenter + spawnOffset.x * ((-maxKushiLength / 2f) + i), spawnOffset.y, 0);
-                i++;
-            }
-            a = spawncenter;
-            b = spawnOffset;
-        }
+        // if(a != spawncenter || b != spawnOffset)
+        // {
+        //     int i = 0;
+        //     foreach(Kushikatsu kushi in onDishKatsusList)
+        //     {
+        //         kushi.transform.localPosition = new Vector3(spawncenter + spawnOffset.x * ((-maxKushiLength / 2f) + i), spawnOffset.y, 0);
+        //         i++;
+        //     }
+        //     a = spawncenter;
+        //     b = spawnOffset;
+        // }
     }
 
     void UpdateVisuals()
