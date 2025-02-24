@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        if(timer.timeLeft <= 0f)
+        if(timer.timeLeft <= 0.1f)
         {
             TimeOver();
         }
