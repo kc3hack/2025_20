@@ -1,6 +1,7 @@
 # Kanzai Against Nido-zuke Survival Adenture In-izakaya 
 
-![KANSAI](https://drive.google.com/file/d/1rQUD4JgBKQtSSKu31g5cFGK2coRo2FOw/view?usp=drivesdk)<!-- プロダクト名・イメージ画像を差し変えてください -->
+![KANSAI](https://github.com/user-attachments/assets/24181fee-28b9-46b4-8565-804a4fa7559c)
+)<!-- プロダクト名・イメージ画像を差し変えてください -->
 
 
 ## チーム名
