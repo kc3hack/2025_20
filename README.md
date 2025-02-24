@@ -1,5 +1,4 @@
-# プロダクト名 
-<!-- プロダクト名に変更してください -->
+# Kanzai Against Nido-zuke Survival Adenture In-izakaya 
 
 ![KANSAI](https://kc3.me/cms/wp-content/uploads/2024/11/hack25-eyecatch.png)
 <!-- プロダクト名・イメージ画像を差し変えてください -->
